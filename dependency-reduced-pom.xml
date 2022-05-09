@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.voidcity.blocks</groupId>
+  <artifactId>RamBlocks</artifactId>
+  <version>0.1-Alpha</version>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.2.4</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <filters>
+                <filter>
+                  <artifact>*:*</artifact>
+                  <excludes>
+                    <exclude>META-INF/*.SF</exclude>
+                    <exclude>META-INF/*.DSA</exclude>
+                    <exclude>META-INF/*.RSA</exclude>
+                    <exclude>META-INF/versions/**</exclude>
+                  </excludes>
+                </filter>
+              </filters>
+              <transformers>
+                <transformer>
+                  <mainClass>com.voidcitymc.blocks.Main</mainClass>
+                </transformer>
+              </transformers>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <property />
+                <taskdef />
+                <yguard>
+                  <inoutpair />
+                  <rename>
+                    <property />
+                    <keep>
+                      <class>
+                        <patternset>
+                          <include />
+                          <include />
+                          <include />
+                          <include />
+                          <include />
+                          <include />
+                          <include />
+                          <include />
+                          <include />
+                          <include />
+                          <include />
+                          <include />
+                          <include />
+                          <include />
+                        </patternset>
+                      </class>
+                    </keep>
+                  </rename>
+                  <externalclasses>
+                    <pathelement />
+                  </externalclasses>
+                </yguard>
+              </target>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  <repositories>
+    <repository>
+      <id>jcenterJMonkey</id>
+      <url>https://dl.bintray.com/jmonkeyengine/org.jmonkeyengine</url>
+    </repository>
+    <repository>
+      <id>jcenter</id>
+      <url>https://jcenter.bintray.com/</url>
+    </repository>
+    <repository>
+      <id>jcenterBlocks</id>
+      <url>https://dl.bintray.com/remyvd/rvandoosselaer</url>
+    </repository>
+    <repository>
+      <id>jcenterMathAndLemur</id>
+      <url>https://dl.bintray.com/simsilica/Sim-tools/</url>
+    </repository>
+    <repository>
+      <id>jcenterMinie</id>
+      <url>https://dl.bintray.com/stephengold/com.github.stephengold/</url>
+    </repository>
+  </repositories>
+  <dependencies>
+    <dependency>
+      <groupId>org.codehaus.groovy</groupId>
+      <artifactId>groovy-all</artifactId>
+      <version>3.0.6</version>
+      <type>pom</type>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+  <properties>
+    <jme3_v>3.3.2-stable</jme3_v>
+    <jme3_g>org.jmonkeyengine</jme3_g>
+  </properties>
+</project>

@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven 3.8.5
+Built-By: viane
+Build-Jdk: 17.0.1
+Main-Class: com.vian4.tetris.Main
+
