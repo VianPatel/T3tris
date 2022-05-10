@@ -42,6 +42,19 @@ public abstract class GamePiece {
         return points;
     }
 
+    private boolean validate(Point[] points) {
+        for (Point validatePoint : points) {
+            if (validatePoint.getY() >= gameBoard.getBoard().length ||
+                    validatePoint.getY() < 0 ||
+                    validatePoint.getX() >= gameBoard.getBoard()[0].length ||
+                    validatePoint.getX() < 0 ||
+                    gameBoard.getBoard()[validatePoint.getY()][validatePoint.getX()].isOccupied()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public boolean rotate() {
         Point[] newPoints = new Point[points.length];
 
@@ -53,16 +66,31 @@ public abstract class GamePiece {
             }
         }
         
-        for (Point validatePoint: newPoints) {
-            if (validatePoint.getY() >= gameBoard.getBoard().length ||
-              validatePoint.getX() >= gameBoard.getBoard()[0].length ||
-              gameBoard.getBoard()[validatePoint.getY()][validatePoint.getX()].isOccupied() ) {
-                return false;
-            }
-        }
+        if (!validate(newPoints)) return false;
 
         points = newPoints;
         return true;
+    }
+
+    private boolean move(int amount) {
+        Point[] newPoints = new Point[points.length];
+
+        for (int i = 0; i < points.length; i++) {
+            newPoints[i] = new Point(points[i].getX() + amount, points[i].getY());
+        }
+
+        if (!validate(newPoints)) return false;
+
+        points = newPoints;
+        return true;
+    }
+
+    public boolean moveRight() {
+        return move(1);
+    }
+
+    public boolean moveLeft() {
+        return move(-1);
     }
 
     private Point rotateClockwise(Point center, Point point) {

@@ -37,10 +37,11 @@ public class GameBoard {
 
     }
 
-    private GBPoint[][] board = new GBPoint[10][5];
+    private GBPoint[][] board;
     private GamePiece currentPiece = null;
 
-    public GameBoard() {
+    public GameBoard(int r, int c) {
+        board = new GBPoint[r][c];
         for (int y = 0; y < board.length; y++) {
             for (int x = 0; x < board[y].length; x++) {
                 board[y][x] = new GBPoint(x, y);
