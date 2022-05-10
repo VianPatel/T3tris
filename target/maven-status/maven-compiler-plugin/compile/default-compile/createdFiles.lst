@@ -1,1 +1,7 @@
+com\vian4\tetris\GameBoard$GBPoint.class
 com\vian4\tetris\Main.class
+com\vian4\tetris\GameBoard$Color.class
+com\vian4\tetris\GameBoard.class
+com\vian4\tetris\Color.class
+com\vian4\tetris\Point.class
+com\vian4\tetris\GamePiece.class

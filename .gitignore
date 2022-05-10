@@ -2,3 +2,5 @@ hs_err_pid*
 *.dll
 */target/*
 */target/**
+target/**
+target/*
