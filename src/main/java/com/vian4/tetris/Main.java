@@ -11,7 +11,7 @@ public class Main {
         board.setCurrentPiece(new Square(board, 3, 8));
         while (true) {
             try {
-                Thread.sleep(2000);
+                Thread.sleep(500);
                 printBoard(board);
                 if (!board.currentPiece().moveDown()) {
                     //reached end
