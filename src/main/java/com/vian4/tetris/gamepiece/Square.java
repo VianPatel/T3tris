@@ -3,8 +3,8 @@ package com.vian4.tetris.gamepiece;
 import com.vian4.tetris.GameBoard;
 import com.vian4.tetris.Point;
 
-public class Rectangle extends GamePiece {
-    public Rectangle(GameBoard gameBoard, int x, int y) {
+public class Square extends GamePiece {
+    public Square(GameBoard gameBoard, int x, int y) {
         super(gameBoard);
         points = new Point[4];
         points[0] = new Point(x, y);
@@ -13,7 +13,8 @@ public class Rectangle extends GamePiece {
         points[3] = new Point(x + 1, y + 1);
     }
 
+    @Override
     public boolean rotate() {
-        return false;
+        return true;
     }
 }

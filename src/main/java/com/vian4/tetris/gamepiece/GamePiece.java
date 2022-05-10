@@ -8,12 +8,11 @@ public abstract class GamePiece {
 
     private GameBoard gameBoard;
     protected Point[] points;
+    protected Point selectedPoint;
 
     public GamePiece(GameBoard gameBoard) {
         this.gameBoard = gameBoard;
     }
-
-    public abstract boolean rotate();
 
     public boolean moveDown() {
         boolean moved = true;
@@ -41,5 +40,32 @@ public abstract class GamePiece {
 
     public Point[] getPoints() {
         return points;
+    }
+
+    public boolean rotate() {
+        Point[] newPoints = new Point[points.length];
+
+        for (int i = 0; i < points.length; i++) {
+            if (points[i] != selectedPoint) {
+                newPoints[i] = rotateClockwise(selectedPoint, points[i]);
+            } else {
+                newPoints[i] = points[i];
+            }
+        }
+        
+        for (Point validatePoint: newPoints) {
+            if (validatePoint.getY() >= gameBoard.getBoard().length || validatePoint.getX() >= gameBoard.getBoard()[0].length) {
+                return false;
+            }
+        }
+
+        points = newPoints;
+        return true;
+    }
+
+    private Point rotateClockwise(Point center, Point point) {
+        int xDif = point.getX() - center.getX();
+        int yDif = point.getY() - center.getY();
+        return new Point(center.getX() + yDif, center.getY() - xDif);
     }
 }

@@ -2,16 +2,16 @@ package com.vian4.tetris;
 
 import com.vian4.tetris.gamepiece.GamePiece;
 import com.vian4.tetris.gamepiece.LPiece;
-import com.vian4.tetris.gamepiece.Rectangle;
+import com.vian4.tetris.gamepiece.Square;
 
 public class Main {
 
     public static void main(String[] args) {
         GameBoard board = new GameBoard();
-        board.setCurrentPiece(new Rectangle(board, 3, 8));
+        board.setCurrentPiece(new Square(board, 3, 8));
         while (true) {
             try {
-                Thread.sleep(500);
+                Thread.sleep(2000);
                 printBoard(board);
                 if (!board.currentPiece().moveDown()) {
                     //reached end
@@ -20,6 +20,7 @@ public class Main {
                     
                     board.setCurrentPiece(new LPiece(board, 2, 5));
                 }
+                board.currentPiece().rotate();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
