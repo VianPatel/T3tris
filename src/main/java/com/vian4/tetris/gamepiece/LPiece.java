@@ -12,6 +12,6 @@ public class LPiece extends GamePiece {
         points[2] = new Point(x, y + 2);
         points[3] = new Point(x + 1, y + 2);
 
-        selectedPoint = points[1];
+        selectedPointIndex = 1;
     }
 }

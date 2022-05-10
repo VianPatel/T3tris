@@ -8,7 +8,7 @@ public abstract class GamePiece {
 
     private GameBoard gameBoard;
     protected Point[] points;
-    protected Point selectedPoint;
+    protected int selectedPointIndex;
 
     public GamePiece(GameBoard gameBoard) {
         this.gameBoard = gameBoard;
@@ -42,6 +42,7 @@ public abstract class GamePiece {
         return points;
     }
 
+    //todo: fix issue with validation
     private boolean validate(Point[] points) {
         for (Point validatePoint : points) {
             if (validatePoint.getY() >= gameBoard.getBoard().length ||
@@ -59,15 +60,14 @@ public abstract class GamePiece {
         Point[] newPoints = new Point[points.length];
 
         for (int i = 0; i < points.length; i++) {
-            if (points[i] != selectedPoint) {
-                newPoints[i] = rotateClockwise(selectedPoint, points[i]);
+            if (i != selectedPointIndex) {
+                newPoints[i] = rotateClockwise(points[selectedPointIndex], points[i]);
             } else {
                 newPoints[i] = points[i];
             }
         }
-        
-        if (!validate(newPoints)) return false;
 
+        if (!validate(newPoints)) return false;
         points = newPoints;
         return true;
     }
