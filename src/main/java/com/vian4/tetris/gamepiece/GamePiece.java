@@ -4,9 +4,9 @@ import com.vian4.tetris.GameBoard;
 import com.vian4.tetris.Point;
 import com.vian4.tetris.Color;
 
-public abstract class GamePiece {
+public abstract class GamePiece implements Cloneable {
 
-    private GameBoard gameBoard;
+    protected GameBoard gameBoard;
     protected Point[] points;
     protected int selectedPointIndex;
 
@@ -27,8 +27,8 @@ public abstract class GamePiece {
             //freeze object in place
             for (Point point: points) {
                 gameBoard.getBoard()[point.getY()][point.getX()].setOccupied(new Color((byte)0, (byte)0, (byte)0, (byte)1));
-                gameBoard.setCurrentPiece(null);
             }
+            gameBoard.setCurrentPiece(null);
             return false;
         }
 
@@ -98,4 +98,7 @@ public abstract class GamePiece {
         int yDif = point.getY() - center.getY();
         return new Point(center.getX() + yDif, center.getY() - xDif);
     }
+
+    public abstract Object clone();
+
 }

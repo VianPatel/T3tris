@@ -14,4 +14,9 @@ public class LPiece extends GamePiece {
 
         selectedPointIndex = 1;
     }
+
+    @Override
+    public Object clone() {
+        return new LPiece(gameBoard, points[0].getX(), points[0].getY());
+    }
 }

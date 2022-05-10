@@ -37,6 +37,7 @@ public class Main extends SimpleApplication {
 
     private GameBoard board;
     private Geometry[][] boxes;
+    private GamePiece[] pieces = new GamePiece[2];
 
     @Override
     public void simpleInitApp() {
@@ -49,7 +50,9 @@ public class Main extends SimpleApplication {
         camNode.lookAt(new Vector3f(0,10,0), new Vector3f(0, 1, 0));
 
         board = new GameBoard(30, 8);
-        board.setCurrentPiece(new Square(board, 3, 8));
+
+        pieces[0] = new LPiece(board, 2, 25);
+        pieces[1] = new Square(board, 3, 8);
 
         boxes = new Geometry[board.getBoard().length][board.getBoard()[0].length];
 
@@ -72,10 +75,10 @@ public class Main extends SimpleApplication {
                 new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
         inputManager.addMapping("Right",
                 new KeyTrigger(KeyInput.KEY_RIGHT),
-                new KeyTrigger(KeyInput.KEY_A));
+                new KeyTrigger(KeyInput.KEY_D));
         inputManager.addMapping("Left",
                 new KeyTrigger(KeyInput.KEY_LEFT),
-                new KeyTrigger(KeyInput.KEY_D));
+                new KeyTrigger(KeyInput.KEY_A));
         inputManager.addMapping("Down",
                 new KeyTrigger(KeyInput.KEY_DOWN),
                 new KeyTrigger(KeyInput.KEY_S));
@@ -89,13 +92,18 @@ public class Main extends SimpleApplication {
     public void simpleUpdate(float tpf) {
         timeWaited += tpf;
 
-        if (timeWaited >= 0.5) {
-            timeWaited -= 0.5;
+        if (timeWaited >= 0.2) {
+            timeWaited -= 0.2;
+            if (!board.currentPieceSelected()) {
+                System.out.print((int) (Math.random() * pieces.length));
+                System.out.print((int) (pieces.length));
+                board.setCurrentPiece((GamePiece) pieces[(int)(Math.random()*pieces.length)].clone());
+            }
             printBoard(board);
             if (!board.currentPiece().moveDown()) {
                 //piece has fallen to bottom (set a new piece)
                 //todo: make random
-                board.setCurrentPiece(new LPiece(board, 2, 25));
+                System.out.println(board.currentPieceSelected());
             }
             //board.currentPiece().rotate();
         }
@@ -135,9 +143,13 @@ public class Main extends SimpleApplication {
                     board.currentPiece().rotate();
                 }
             } else if (name.equals("Right") && !keyPressed) {
-                board.currentPiece().moveRight();
+                if (board.currentPieceSelected()) {
+                    board.currentPiece().moveRight();
+                }
             } else if (name.equals("Left") && !keyPressed) {
-                board.currentPiece().moveLeft();
+                if (board.currentPieceSelected()) {
+                    board.currentPiece().moveLeft();
+                }
             } else if (name.equals("Down")) {
 
             }

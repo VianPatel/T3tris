@@ -17,4 +17,9 @@ public class Square extends GamePiece {
     public boolean rotate() {
         return true;
     }
+
+    @Override
+    public Object clone() {
+        return new LPiece(gameBoard, points[0].getX(), points[0].getY());
+    }
 }
