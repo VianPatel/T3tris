@@ -1,7 +1,8 @@
 package com.vian4.tetris;
 
+import com.vian4.tetris.gamepiece.GamePiece;
+
 public class GameBoard {
-    public static class Color { byte r, g, b, a; Color(byte r, byte g, byte b, byte a) { this.r=r; this.g=g; this.b=b; this.a=a; }}
 
     public class GBPoint {
         private boolean occupied = false;

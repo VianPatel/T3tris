@@ -1,4 +1,8 @@
-package com.vian4.tetris;
+package com.vian4.tetris.gamepiece;
+
+import com.vian4.tetris.GameBoard;
+import com.vian4.tetris.Point;
+import com.vian4.tetris.Color;
 
 public abstract class GamePiece {
 
@@ -23,7 +27,7 @@ public abstract class GamePiece {
         if (!moved) {
             //freeze object in place
             for (Point point: points) {
-                gameBoard.getBoard()[point.getY()][point.getX()].setOccupied(new GameBoard.Color((byte)0, (byte)0, (byte)0, (byte)1));
+                gameBoard.getBoard()[point.getY()][point.getX()].setOccupied(new Color((byte)0, (byte)0, (byte)0, (byte)1));
                 gameBoard.setCurrentPiece(null);
             }
             return false;
@@ -35,4 +39,7 @@ public abstract class GamePiece {
         return true;
     }
 
+    public Point[] getPoints() {
+        return points;
+    }
 }
