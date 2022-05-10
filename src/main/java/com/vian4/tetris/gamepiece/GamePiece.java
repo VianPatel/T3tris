@@ -54,7 +54,9 @@ public abstract class GamePiece {
         }
         
         for (Point validatePoint: newPoints) {
-            if (validatePoint.getY() >= gameBoard.getBoard().length || validatePoint.getX() >= gameBoard.getBoard()[0].length) {
+            if (validatePoint.getY() >= gameBoard.getBoard().length ||
+              validatePoint.getX() >= gameBoard.getBoard()[0].length ||
+              gameBoard.getBoard()[validatePoint.getY()][validatePoint.getX()].isOccupied() ) {
                 return false;
             }
         }
