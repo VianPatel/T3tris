@@ -17,7 +17,9 @@ import com.jme3.math.FastMath;
 import com.jme3.input.KeyInput;
 import com.jme3.input.MouseInput;
 import com.jme3.input.controls.ActionListener;
+import com.jme3.input.controls.AnalogListener;
 import com.jme3.input.controls.KeyTrigger;
+import com.jme3.input.controls.MouseAxisTrigger;
 import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.light.SpotLight;
 import com.jme3.system.AppSettings;
@@ -27,18 +29,23 @@ import com.vian4.tetris.gamepiece.Square;
 
 public class Main extends SimpleApplication {
 
+    protected static final int WIDTH = 1280;
+    protected static final int HEIGHT = 720;
     public static void main(String[] args) {
         Main app = new Main();
         AppSettings settings = new AppSettings(true);
         settings.setTitle("3D Tetris");
-        settings.put("Width", 1280);
-        settings.put("Height", 720);
+        settings.put("Width", WIDTH);
+        settings.put("Height", HEIGHT);
         app.setShowSettings(false);
         app.setSettings(settings);
         app.start();
     }
 
     private HashMap<ColorRGBA, Material> colorMap = new HashMap<>();
+
+    private Node camNodeRotated;
+    private Node camNode;
 
     private GameBoard board;
     private Geometry[][] boxes;
@@ -48,19 +55,22 @@ public class Main extends SimpleApplication {
     @Override
     public void simpleInitApp() {
         //Box box = new Box(0.5f, 0.5f, 0.5f);
+        board = new GameBoard(30, 8);
+
         rootNode.attachChild(boxNode);
         boxNode.setShadowMode(ShadowMode.CastAndReceive);
         
         Geometry box = (Geometry) assetManager.loadModel("Point.obj");
 
         flyCam.setEnabled(false);
-        Node camNode = new CameraNode("Camera Node", cam);
+        camNodeRotated = new CameraNode("Camera Node", cam);
+        camNode = new Node();
+        camNode.rotate(0, 0, 0);
+        camNode.attachChild(camNodeRotated);
 
         rootNode.attachChild(camNode);
-        camNode.setLocalTranslation(new Vector3f(-30, 30, 0));
-        camNode.lookAt(new Vector3f(0,10,0), new Vector3f(0, 1, 0));
-
-        board = new GameBoard(30, 8);
+        camNodeRotated.setLocalTranslation(new Vector3f(-50.0f, (float) (board.getBoard().length*1.2), 0.0f));
+        //camNodeRotated.lookAt(new Vector3f(0,10,0), new Vector3f(0, 1, 0));
 
         pieces[0] = new LPiece(board, ColorRGBA.Red, 2, 25);
         pieces[1] = new Square(board, ColorRGBA.Blue, 2, 25);
@@ -94,7 +104,7 @@ public class Main extends SimpleApplication {
         spot.setSpotOuterAngle(35f * FastMath.DEG_TO_RAD); // outer light cone (edge of the light)
         spot.setColor(ColorRGBA.White.mult(1.3f)); // light color
         //spot.setPosition(new Vector3f(0, 30, 2)); // shine from camera loc
-        spot.setPosition(camNode.getWorldTranslation().add(new Vector3f(-30, 150, 0)));
+        spot.setPosition(camNodeRotated.getWorldTranslation().add(new Vector3f(-50, 250, 0)));
         Vector3f originDir = (new Vector3f(0, 0, 0)).subtract(new Vector3f(0, 30, 2)).normalize();
         System.out.println(originDir);
         spot.setDirection(originDir); // shine forward from camera loc
@@ -111,6 +121,18 @@ public class Main extends SimpleApplication {
         SSAOFilter ssaoFilter = new SSAOFilter(12.94f, 43.92f, 0.33f, 0.61f);
         fpp.addFilter(ssaoFilter);
         viewPort.addProcessor(fpp);
+
+
+
+        inputManager.addMapping("RotateX",
+                new MouseAxisTrigger(MouseInput.AXIS_X, true));
+        inputManager.addMapping("RotateX_negative",
+                new MouseAxisTrigger(MouseInput.AXIS_X, false));
+            inputManager.addMapping("RotateY",
+                new MouseAxisTrigger(MouseInput.AXIS_Y, true));
+        inputManager.addMapping("RotateY_negative",
+                new MouseAxisTrigger(MouseInput.AXIS_Y, false));
+        inputManager.addListener(analogListener, "RotateX", "RotateX_negative", "RotateY", "RotateY_negative");        
     }
 
 
@@ -176,6 +198,29 @@ public class Main extends SimpleApplication {
         }
         return false;
     }
+
+    private final AnalogListener analogListener = new AnalogListener() {
+        boolean movedToCenter = false;
+
+        @Override
+        public void onAnalog(String name, float value, float tpf) {
+            if (movedToCenter) {
+                movedToCenter = false;
+                return;
+            }
+            if ("RotateX".equals(name)) {
+                camNode.rotate(0, (float) (value * speed * 8), 0);
+            } else if ("RotateX_negative".equals(name)) {
+                camNode.rotate(0, (float) (-value * speed * 8), 0);
+            } else if ("RotateY".equals(name)) {
+                camNode.rotate(0, 0, (float) (-value * speed));
+            } else if ("RotateY_negative".equals(name)) {
+                camNode.rotate(0, 0, (float) (value * speed));
+//                org.lwjgl.input.Mouse.setCursorPosition(Main.WIDTH / 2, Main.HEIGHT / 2);
+            }
+            camNodeRotated.lookAt(new Vector3f(0, 10, 0), new Vector3f(0, 1, 0));
+        }
+    };
 
     private final ActionListener actionListener = new ActionListener() {
         @Override
