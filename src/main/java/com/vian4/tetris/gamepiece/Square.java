@@ -1,11 +1,12 @@
 package com.vian4.tetris.gamepiece;
 
+import com.jme3.math.ColorRGBA;
 import com.vian4.tetris.GameBoard;
 import com.vian4.tetris.Point;
 
 public class Square extends GamePiece {
-    public Square(GameBoard gameBoard, int x, int y) {
-        super(gameBoard);
+    public Square(GameBoard gameBoard, ColorRGBA color, int x, int y) {
+        super(gameBoard, color);
         points = new Point[4];
         points[0] = new Point(x, y);
         points[1] = new Point(x, y + 1);
@@ -20,6 +21,6 @@ public class Square extends GamePiece {
 
     @Override
     public GamePiece copy() {
-        return new Square(gameBoard, points[0].getX(), points[0].getY());
+        return new Square(gameBoard, getColor(), points[0].getX(), points[0].getY());
     }
 }

@@ -1,11 +1,12 @@
 package com.vian4.tetris.gamepiece;
 
+import com.jme3.math.ColorRGBA;
 import com.vian4.tetris.GameBoard;
 import com.vian4.tetris.Point;
 
 public class LPiece extends GamePiece {
-    public LPiece(GameBoard gameBoard, int x, int y) {
-        super(gameBoard);
+    public LPiece(GameBoard gameBoard, ColorRGBA color, int x, int y) {
+        super(gameBoard, color);
         points = new Point[4];
         points[0] = new Point(x, y);
         points[1] = new Point(x, y + 1);
@@ -17,6 +18,6 @@ public class LPiece extends GamePiece {
 
     @Override
     public GamePiece copy() {
-        return new LPiece(gameBoard, points[0].getX(), points[0].getY());
+        return new LPiece(gameBoard, getColor(), points[0].getX(), points[0].getY());
     }
 }

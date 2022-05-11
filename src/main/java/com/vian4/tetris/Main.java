@@ -51,8 +51,8 @@ public class Main extends SimpleApplication {
 
         board = new GameBoard(30, 8);
 
-        pieces[0] = new LPiece(board, 2, 25);
-        pieces[1] = new Square(board, 2, 25);
+        pieces[0] = new LPiece(board, ColorRGBA.Red, 2, 25);
+        pieces[1] = new Square(board, ColorRGBA.Blue, 2, 25);
 
         boxes = new Geometry[board.getBoard().length][board.getBoard()[0].length];
 
@@ -111,9 +111,15 @@ public class Main extends SimpleApplication {
         rootNode.detachAllChildren();
         for (int y = board.getBoard().length - 1; y >= 0; y--) {
             for (int x = 0; x < board.getBoard()[y].length; x++) {
-                if ((board.getBoard()[y][x].getColor() != null && board.getBoard()[y][x].getColor().a == 1)
-                        || pieceContainsPt(board.currentPiece(), x, y)) {
-                    boxes[y][x].setMaterial(colorMap.get(ColorRGBA.Blue));
+                if (board.getBoard()[y][x].isOccupied() || pieceContainsPt(board.currentPiece(), x, y)) {
+                    ColorRGBA pointColor = null;
+                    if (board.getBoard()[y][x].isOccupied()) {
+                        pointColor = board.getBoard()[y][x].getColor();
+                    } else {
+                        pointColor = board.currentPiece().getColor();
+                    }
+
+                    boxes[y][x].setMaterial(colorMap.get(pointColor));
                     rootNode.attachChild(boxes[y][x]);
                     boxes[y][x].setLocalTranslation(0, y, x);
                 }

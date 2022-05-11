@@ -1,12 +1,13 @@
 package com.vian4.tetris;
 
+import com.jme3.math.ColorRGBA;
 import com.vian4.tetris.gamepiece.GamePiece;
 
 public class GameBoard {
 
     public class GBPoint {
         private boolean occupied = false;
-        private Color color;
+        private ColorRGBA color;
         private int x, y;
 
         public GBPoint(int x, int y) {
@@ -22,12 +23,12 @@ public class GameBoard {
             return y;
         }
 
-        public void setOccupied(Color color) {
+        public void setOccupied(ColorRGBA color) {
             this.occupied = true;
             this.color = color;
         }
 
-        public Color getColor() {
+        public ColorRGBA getColor() {
             return color;
         }
 

@@ -2,16 +2,22 @@ package com.vian4.tetris.gamepiece;
 
 import com.vian4.tetris.GameBoard;
 import com.vian4.tetris.Point;
-import com.vian4.tetris.Color;
+import com.jme3.math.ColorRGBA;
 
 public abstract class GamePiece {
 
     protected GameBoard gameBoard;
     protected Point[] points;
     protected int selectedPointIndex;
+    private ColorRGBA color;
 
-    public GamePiece(GameBoard gameBoard) {
+    public GamePiece(GameBoard gameBoard, ColorRGBA color) {
         this.gameBoard = gameBoard;
+        this.color = color;
+    }
+
+    public ColorRGBA getColor() {
+        return color;
     }
 
     public boolean moveDown() {
@@ -26,7 +32,7 @@ public abstract class GamePiece {
         if (!moved) {
             //freeze object in place
             for (Point point: points) {
-                gameBoard.getBoard()[point.getY()][point.getX()].setOccupied(new Color((byte)0, (byte)0, (byte)0, (byte)1));
+                gameBoard.getBoard()[point.getY()][point.getX()].setOccupied(color);
             }
             gameBoard.setCurrentPiece(null);
             return false;
