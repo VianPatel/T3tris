@@ -5,15 +5,19 @@ import java.util.HashMap;
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
+import com.jme3.renderer.queue.RenderQueue.ShadowMode;
 import com.jme3.scene.CameraNode;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
+import com.jme3.shadow.SpotLightShadowRenderer;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.FastMath;
 import com.jme3.input.KeyInput;
 import com.jme3.input.MouseInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.input.controls.MouseButtonTrigger;
+import com.jme3.light.SpotLight;
 import com.jme3.system.AppSettings;
 import com.vian4.tetris.gamepiece.GamePiece;
 import com.vian4.tetris.gamepiece.LPiece;
@@ -37,16 +41,21 @@ public class Main extends SimpleApplication {
     private GameBoard board;
     private Geometry[][] boxes;
     private GamePiece[] pieces = new GamePiece[2];
+    private Node boxNode = new Node();
 
     @Override
     public void simpleInitApp() {
         //Box box = new Box(0.5f, 0.5f, 0.5f);
+        rootNode.attachChild(boxNode);
+        boxNode.setShadowMode(ShadowMode.CastAndReceive);
+        
         Geometry box = (Geometry) assetManager.loadModel("Point.obj");
 
         flyCam.setEnabled(false);
         Node camNode = new CameraNode("Camera Node", cam);
+
         rootNode.attachChild(camNode);
-        camNode.setLocalTranslation(new Vector3f(-30, 20, 0));
+        camNode.setLocalTranslation(new Vector3f(-30, 30, 0));
         camNode.lookAt(new Vector3f(0,10,0), new Vector3f(0, 1, 0));
 
         board = new GameBoard(30, 8);
@@ -83,6 +92,27 @@ public class Main extends SimpleApplication {
                 new KeyTrigger(KeyInput.KEY_DOWN),
                 new KeyTrigger(KeyInput.KEY_S));
         inputManager.addListener(actionListener, "Rotate", "Right", "Left", "Down");
+
+        SpotLight spot = new SpotLight();
+        spot.setSpotRange(100f); // distance
+        spot.setSpotInnerAngle(15f * FastMath.DEG_TO_RAD); // inner light cone (central beam)
+        spot.setSpotOuterAngle(35f * FastMath.DEG_TO_RAD); // outer light cone (edge of the light)
+        spot.setColor(ColorRGBA.White.mult(1.3f)); // light color
+        spot.setPosition(new Vector3f(0, 30, 2)); // shine from camera loc
+        spot.setDirection(new Vector3f(0, -1, 0)); // shine forward from camera loc
+        rootNode.addLight(spot);
+
+
+        final int SHADOWMAP_SIZE=1024;
+        SpotLightShadowRenderer slsr = new SpotLightShadowRenderer(assetManager, SHADOWMAP_SIZE);
+        slsr.setLight(spot);
+        viewPort.addProcessor(slsr);
+
+
+        //FilterPostProcessor fpp = new FilterPostProcessor(assetManager);
+        //SSAOFilter ssaoFilter = new SSAOFilter(12.94f, 43.92f, 0.33f, 0.61f);
+        //fpp.addFilter(ssaoFilter);
+        //viewPort.addProcessor(fpp);
     }
 
 
@@ -108,7 +138,7 @@ public class Main extends SimpleApplication {
     }
 
     public void printBoard(GameBoard board) {
-        rootNode.detachAllChildren();
+        boxNode.detachAllChildren();
         for (int y = board.getBoard().length - 1; y >= 0; y--) {
             for (int x = 0; x < board.getBoard()[y].length; x++) {
                 if (board.getBoard()[y][x].isOccupied() || pieceContainsPt(board.currentPiece(), x, y)) {
@@ -120,7 +150,7 @@ public class Main extends SimpleApplication {
                     }
 
                     boxes[y][x].setMaterial(colorMap.get(pointColor));
-                    rootNode.attachChild(boxes[y][x]);
+                    boxNode.attachChild(boxes[y][x]);
                     boxes[y][x].setLocalTranslation(0, y, x);
                 }
             }
