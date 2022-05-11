@@ -4,7 +4,7 @@ import com.vian4.tetris.GameBoard;
 import com.vian4.tetris.Point;
 import com.vian4.tetris.Color;
 
-public abstract class GamePiece implements Cloneable {
+public abstract class GamePiece {
 
     protected GameBoard gameBoard;
     protected Point[] points;
@@ -99,6 +99,6 @@ public abstract class GamePiece implements Cloneable {
         return new Point(center.getX() + yDif, center.getY() - xDif);
     }
 
-    public abstract Object clone();
+    public abstract GamePiece copy();
 
 }

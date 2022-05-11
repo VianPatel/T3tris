@@ -97,7 +97,7 @@ public class Main extends SimpleApplication {
             if (!board.currentPieceSelected()) {
                 System.out.print((int) (Math.random() * pieces.length));
                 System.out.print((int) (pieces.length));
-                board.setCurrentPiece((GamePiece) pieces[(int)(Math.random()*pieces.length)].clone());
+                board.setCurrentPiece(pieces[(int)(Math.random()*pieces.length)].copy());
             }
             printBoard(board);
             if (!board.currentPiece().moveDown()) {

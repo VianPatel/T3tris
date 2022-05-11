@@ -19,7 +19,7 @@ public class Square extends GamePiece {
     }
 
     @Override
-    public Object clone() {
+    public GamePiece copy() {
         return new LPiece(gameBoard, points[0].getX(), points[0].getY());
     }
 }
