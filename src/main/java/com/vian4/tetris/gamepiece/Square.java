@@ -20,6 +20,6 @@ public class Square extends GamePiece {
 
     @Override
     public GamePiece copy() {
-        return new LPiece(gameBoard, points[0].getX(), points[0].getY());
+        return new Square(gameBoard, points[0].getX(), points[0].getY());
     }
 }

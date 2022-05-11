@@ -52,7 +52,7 @@ public class Main extends SimpleApplication {
         board = new GameBoard(30, 8);
 
         pieces[0] = new LPiece(board, 2, 25);
-        pieces[1] = new Square(board, 3, 8);
+        pieces[1] = new Square(board, 2, 25);
 
         boxes = new Geometry[board.getBoard().length][board.getBoard()[0].length];
 
@@ -95,15 +95,12 @@ public class Main extends SimpleApplication {
         if (timeWaited >= 0.2) {
             timeWaited -= 0.2;
             if (!board.currentPieceSelected()) {
-                System.out.print((int) (Math.random() * pieces.length));
-                System.out.print((int) (pieces.length));
                 board.setCurrentPiece(pieces[(int)(Math.random()*pieces.length)].copy());
             }
             printBoard(board);
             if (!board.currentPiece().moveDown()) {
                 //piece has fallen to bottom (set a new piece)
                 //todo: make random
-                System.out.println(board.currentPieceSelected());
             }
             //board.currentPiece().rotate();
         }
