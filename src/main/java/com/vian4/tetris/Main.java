@@ -8,7 +8,6 @@ import com.jme3.math.Vector3f;
 import com.jme3.scene.CameraNode;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
-import com.jme3.scene.shape.Box;
 import com.jme3.math.ColorRGBA;
 import com.jme3.input.KeyInput;
 import com.jme3.input.MouseInput;
@@ -41,7 +40,8 @@ public class Main extends SimpleApplication {
 
     @Override
     public void simpleInitApp() {
-        Box box = new Box(0.5f, 0.5f, 0.5f);
+        //Box box = new Box(0.5f, 0.5f, 0.5f);
+        Geometry box = (Geometry) assetManager.loadModel("Point.obj");
 
         flyCam.setEnabled(false);
         Node camNode = new CameraNode("Camera Node", cam);
@@ -58,7 +58,7 @@ public class Main extends SimpleApplication {
 
         for (int r = 0; r < boxes.length; r++) {
             for (int c = 0; c < boxes[r].length; c++) {
-                boxes[r][c] = new Geometry("Box", box);
+                boxes[r][c] = box.clone();//new Geometry("Box", box);
             }
         }
 
