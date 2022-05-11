@@ -5,6 +5,8 @@ import java.util.HashMap;
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
+import com.jme3.post.FilterPostProcessor;
+import com.jme3.post.ssao.SSAOFilter;
 import com.jme3.renderer.queue.RenderQueue.ShadowMode;
 import com.jme3.scene.CameraNode;
 import com.jme3.scene.Geometry;
@@ -36,7 +38,7 @@ public class Main extends SimpleApplication {
         app.start();
     }
 
-    HashMap<ColorRGBA, Material> colorMap = new HashMap<>();
+    private HashMap<ColorRGBA, Material> colorMap = new HashMap<>();
 
     private GameBoard board;
     private Geometry[][] boxes;
@@ -71,13 +73,6 @@ public class Main extends SimpleApplication {
             }
         }
 
-        Material matBlue = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-        matBlue.setColor("Color", ColorRGBA.Blue);
-        colorMap.put(ColorRGBA.Blue, matBlue);
-
-        Material matRed = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-        matRed.setColor("Color", ColorRGBA.Red);
-        colorMap.put(ColorRGBA.Red, matRed);
 
         inputManager.addMapping("Rotate", new KeyTrigger(KeyInput.KEY_UP), 
                 new KeyTrigger(KeyInput.KEY_W),
@@ -94,12 +89,15 @@ public class Main extends SimpleApplication {
         inputManager.addListener(actionListener, "Rotate", "Right", "Left", "Down");
 
         SpotLight spot = new SpotLight();
-        spot.setSpotRange(100f); // distance
+        spot.setSpotRange(1000f); // distance
         spot.setSpotInnerAngle(15f * FastMath.DEG_TO_RAD); // inner light cone (central beam)
         spot.setSpotOuterAngle(35f * FastMath.DEG_TO_RAD); // outer light cone (edge of the light)
         spot.setColor(ColorRGBA.White.mult(1.3f)); // light color
-        spot.setPosition(new Vector3f(0, 30, 2)); // shine from camera loc
-        spot.setDirection(new Vector3f(0, -1, 0)); // shine forward from camera loc
+        //spot.setPosition(new Vector3f(0, 30, 2)); // shine from camera loc
+        spot.setPosition(camNode.getWorldTranslation().add(new Vector3f(-30, 150, 0)));
+        Vector3f originDir = (new Vector3f(0, 0, 0)).subtract(new Vector3f(0, 30, 2)).normalize();
+        System.out.println(originDir);
+        spot.setDirection(originDir); // shine forward from camera loc
         rootNode.addLight(spot);
 
 
@@ -109,10 +107,10 @@ public class Main extends SimpleApplication {
         viewPort.addProcessor(slsr);
 
 
-        //FilterPostProcessor fpp = new FilterPostProcessor(assetManager);
-        //SSAOFilter ssaoFilter = new SSAOFilter(12.94f, 43.92f, 0.33f, 0.61f);
-        //fpp.addFilter(ssaoFilter);
-        //viewPort.addProcessor(fpp);
+        FilterPostProcessor fpp = new FilterPostProcessor(assetManager);
+        SSAOFilter ssaoFilter = new SSAOFilter(12.94f, 43.92f, 0.33f, 0.61f);
+        fpp.addFilter(ssaoFilter);
+        viewPort.addProcessor(fpp);
     }
 
 
@@ -149,12 +147,24 @@ public class Main extends SimpleApplication {
                         pointColor = board.currentPiece().getColor();
                     }
 
-                    boxes[y][x].setMaterial(colorMap.get(pointColor));
+                    boxes[y][x].setMaterial(getColor(pointColor));
                     boxNode.attachChild(boxes[y][x]);
                     boxes[y][x].setLocalTranslation(0, y, x);
                 }
             }
         }
+    }
+
+    public Material getColor(ColorRGBA color) {
+        Material mat = colorMap.get(color);
+        if (mat == null) {
+            mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
+            mat.setBoolean("UseMaterialColors", true);
+            mat.setColor("Ambient", color);
+            mat.setColor("Diffuse", color);
+            colorMap.put(color, mat);
+        }
+        return mat;
     }
 
     public boolean pieceContainsPt(GamePiece piece, int x, int y) {
