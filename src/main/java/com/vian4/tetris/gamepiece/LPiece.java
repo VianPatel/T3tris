@@ -5,19 +5,17 @@ import com.vian4.tetris.GameBoard;
 import com.vian4.tetris.Point;
 
 public class LPiece extends GamePiece {
-    public LPiece(GameBoard gameBoard, ColorRGBA color, int x, int y) {
-        super(gameBoard, color);
+    public LPiece(GameBoard gameBoard, ColorRGBA color, int x, int y, int z) {
+        super(gameBoard, color, 1);
         points = new Point[4];
-        points[0] = new Point(x, y);
-        points[1] = new Point(x, y + 1);
-        points[2] = new Point(x, y + 2);
-        points[3] = new Point(x + 1, y + 2);
-
-        selectedPointIndex = 1;
+        points[0] = new Point(x, y, z);
+        points[1] = new Point(x, y + 1, z);
+        points[2] = new Point(x, y + 2, z);
+        points[3] = new Point(x + 1, y + 2, z);
     }
 
     @Override
     public GamePiece copy() {
-        return new LPiece(gameBoard, getColor(), points[0].getX(), points[0].getY());
+        return new LPiece(gameBoard, getColor(), points[0].getX(), points[0].getY(), points[0].getZ());
     }
 }

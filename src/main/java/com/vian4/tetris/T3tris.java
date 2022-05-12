@@ -21,12 +21,13 @@ import com.jme3.input.controls.AnalogListener;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.input.controls.MouseAxisTrigger;
 import com.jme3.input.controls.MouseButtonTrigger;
+import com.jme3.light.AmbientLight;
 import com.jme3.light.SpotLight;
 import com.vian4.tetris.gamepiece.GamePiece;
 import com.vian4.tetris.gamepiece.LPiece;
 import com.vian4.tetris.gamepiece.Square;
 
-public class ThreeDTetris extends SimpleApplication {
+public class T3tris extends SimpleApplication {
 
     private HashMap<ColorRGBA, Material> colorMap = new HashMap<>();
 
@@ -34,14 +35,14 @@ public class ThreeDTetris extends SimpleApplication {
     private Node camNode;
 
     private GameBoard board;
-    private Geometry[][] boxes;
+    private Geometry[][][] boxes;
     private GamePiece[] pieces = new GamePiece[2];
     private Node boxNode = new Node();
 
     @Override
     public void simpleInitApp() {
         //Box box = new Box(0.5f, 0.5f, 0.5f);
-        board = new GameBoard(30, 8);
+        board = new GameBoard(30, 8, 8);
 
         rootNode.attachChild(boxNode);
         boxNode.setShadowMode(ShadowMode.CastAndReceive);
@@ -57,21 +58,27 @@ public class ThreeDTetris extends SimpleApplication {
         camNodeRotated.setLocalTranslation(new Vector3f(-50.0f, (float) (board.getBoard().length*1.2), 0.0f));
         //camNodeRotated.lookAt(new Vector3f(0,10,0), new Vector3f(0, 1, 0));
 
-        pieces[0] = new LPiece(board, ColorRGBA.Red, 2, 25);
-        pieces[1] = new Square(board, ColorRGBA.Blue, 2, 25);
+        pieces[0] = new LPiece(board, ColorRGBA.Red, 2, 25, 0);
+        pieces[1] = new Square(board, ColorRGBA.Blue, 2, 25, 0);
 
-        boxes = new Geometry[board.getBoard().length][board.getBoard()[0].length];
+        boxes = new Geometry[board.getBoard().length][board.getBoard()[0].length][board.getBoard()[0][0].length];
 
         for (int r = 0; r < boxes.length; r++) {
             for (int c = 0; c < boxes[r].length; c++) {
-                boxes[r][c] = box.clone();//new Geometry("Box", box);
+                for (int d = 0; d < boxes[r][c].length; d++) {
+                    boxes[r][c][d] = box.clone();// new Geometry("Box", box);
+                }
             }
         }
 
 
-        inputManager.addMapping("Rotate", new KeyTrigger(KeyInput.KEY_UP), 
-                new KeyTrigger(KeyInput.KEY_W),
-                new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
+        inputManager.addMapping("RotateX",
+        // new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
+                new KeyTrigger(KeyInput.KEY_UP), 
+                new KeyTrigger(KeyInput.KEY_W));
+        inputManager.addMapping("RotateZ",
+                new KeyTrigger(KeyInput.KEY_COMMA), 
+                new KeyTrigger(KeyInput.KEY_Z));
         inputManager.addMapping("Right",
                 new KeyTrigger(KeyInput.KEY_RIGHT),
                 new KeyTrigger(KeyInput.KEY_D));
@@ -81,7 +88,18 @@ public class ThreeDTetris extends SimpleApplication {
         inputManager.addMapping("Down",
                 new KeyTrigger(KeyInput.KEY_DOWN),
                 new KeyTrigger(KeyInput.KEY_S));
-        inputManager.addListener(actionListener, "Rotate", "Right", "Left", "Down");
+        inputManager.addMapping("Front",
+                new KeyTrigger(KeyInput.KEY_SLASH),
+                new KeyTrigger(KeyInput.KEY_Q));
+        inputManager.addMapping("Back",
+                new KeyTrigger(KeyInput.KEY_PERIOD),
+                new KeyTrigger(KeyInput.KEY_E));
+        inputManager.addListener(actionListener, "RotateX", "RotateZ", "Right", "Left", "Down", "Front", "Back");
+
+
+        AmbientLight al = new AmbientLight();
+        al.setColor(ColorRGBA.White.mult(0.3f));
+        rootNode.addLight(al);
 
         SpotLight spot = new SpotLight();
         spot.setSpotRange(1000f); // distance
@@ -109,15 +127,15 @@ public class ThreeDTetris extends SimpleApplication {
 
 
 
-        inputManager.addMapping("RotateX",
+        inputManager.addMapping("MouseRotateX",
                 new MouseAxisTrigger(MouseInput.AXIS_X, true));
-        inputManager.addMapping("RotateX_negative",
+        inputManager.addMapping("MouseRotateX_negative",
                 new MouseAxisTrigger(MouseInput.AXIS_X, false));
-            inputManager.addMapping("RotateY",
+            inputManager.addMapping("MouseRotateY",
                 new MouseAxisTrigger(MouseInput.AXIS_Y, true));
-        inputManager.addMapping("RotateY_negative",
+        inputManager.addMapping("MouseRotateY_negative",
                 new MouseAxisTrigger(MouseInput.AXIS_Y, false));
-        inputManager.addListener(analogListener, "RotateX", "RotateX_negative", "RotateY", "RotateY_negative");
+        inputManager.addListener(analogListener, "MouseRotateX", "MouseRotateX_negative", "MouseRotateY", "MouseRotateY_negative");
 
         org.lwjgl.input.Mouse.setCursorPosition(Main.WIDTH / 2, Main.HEIGHT / 2);
     }
@@ -148,17 +166,19 @@ public class ThreeDTetris extends SimpleApplication {
         boxNode.detachAllChildren();
         for (int y = board.getBoard().length - 1; y >= 0; y--) {
             for (int x = 0; x < board.getBoard()[y].length; x++) {
-                if (board.getBoard()[y][x].isOccupied() || pieceContainsPt(board.currentPiece(), x, y)) {
-                    ColorRGBA pointColor = null;
-                    if (board.getBoard()[y][x].isOccupied()) {
-                        pointColor = board.getBoard()[y][x].getColor();
-                    } else {
-                        pointColor = board.currentPiece().getColor();
-                    }
+                for (int z = 0; z < board.getBoard()[y][x].length; z++) {
+                    if (board.getBoard()[y][x][z].isOccupied() || pieceContainsPt(board.currentPiece(), x, y, z)) {
+                        ColorRGBA pointColor = null;
+                        if (board.getBoard()[y][x][z].isOccupied()) {
+                            pointColor = board.getBoard()[y][x][z].getColor();
+                        } else {
+                            pointColor = board.currentPiece().getColor();
+                        }
 
-                    boxes[y][x].setMaterial(getColor(pointColor));
-                    boxNode.attachChild(boxes[y][x]);
-                    boxes[y][x].setLocalTranslation(0, y, x);
+                        boxes[y][x][z].setMaterial(getColor(pointColor));
+                        boxNode.attachChild(boxes[y][x][z]);
+                        boxes[y][x][z].setLocalTranslation(z, y, x);
+                    }
                 }
             }
         }
@@ -176,12 +196,13 @@ public class ThreeDTetris extends SimpleApplication {
         return mat;
     }
 
-    public boolean pieceContainsPt(GamePiece piece, int x, int y) {
+    public boolean pieceContainsPt(GamePiece piece, int x, int y, int z) {
         if (piece == null)
             return false;
         for (Point point : piece.getPoints()) {
-            if (point.getX() == x && point.getY() == y)
+            if (point.getX() == x && point.getY() == y && point.getZ() == z) {
                 return true;
+            }
         }
         return false;
     }
@@ -195,13 +216,13 @@ public class ThreeDTetris extends SimpleApplication {
                 movedToCenter = false;
                 return;
             }
-            if ("RotateX".equals(name)) {
+            if ("MouseRotateX".equals(name)) {
                 camNode.rotate(0, (float) (value * speed * 8), 0);
-            } else if ("RotateX_negative".equals(name)) {
+            } else if ("MouseRotateX_negative".equals(name)) {
                 camNode.rotate(0, (float) (-value * speed * 8), 0);
-            } else if ("RotateY".equals(name)) {
+            } else if ("MouseRotateY".equals(name)) {
                 camNode.rotate(0, 0, (float) (-value * speed));
-            } else if ("RotateY_negative".equals(name)) {
+            } else if ("MouseRotateY_negative".equals(name)) {
                 camNode.rotate(0, 0, (float) (value * speed));
 //                org.lwjgl.input.Mouse.setCursorPosition(Main.WIDTH / 2, Main.HEIGHT / 2);
             }
@@ -213,9 +234,13 @@ public class ThreeDTetris extends SimpleApplication {
         @Override
         public void onAction(String name, boolean keyPressed, float tpf) {
 
-            if (name.equals("Rotate") && !keyPressed) {
+            if (name.equals("RotateX") && !keyPressed) {
                 if (board.currentPieceSelected()) {
-                    board.currentPiece().rotate();
+                    board.currentPiece().rotateX();
+                }
+            } else if (name.equals("RotateZ") && !keyPressed) {
+                if (board.currentPieceSelected()) {
+                    board.currentPiece().rotateZ();
                 }
             } else if (name.equals("Right") && !keyPressed) {
                 if (board.currentPieceSelected()) {
@@ -227,6 +252,14 @@ public class ThreeDTetris extends SimpleApplication {
                 }
             } else if (name.equals("Down")) {
 
+            } else if (name.equals("Front") && !keyPressed) {
+                if (board.currentPieceSelected()) {
+                    board.currentPiece().moveForward();
+                }
+            } else if (name.equals("Back") && !keyPressed) {
+                if (board.currentPieceSelected()) {
+                    board.currentPiece().moveBack();
+                }
             }
         }
     };

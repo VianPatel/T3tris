@@ -1,19 +1,9 @@
 package com.vian4.tetris;
 
-public class Point {
-    private int x, y;
-
-    public Point(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
+public class Point extends AbstractPoint {
+    
+    public Point(int x, int y, int z) {
+        super(x, y, z);
     }
 
     public void incrementX(int incrementX) {
@@ -24,12 +14,20 @@ public class Point {
         y += incrementY;
     }
 
+    public void incrementZ(int incrementZ) {
+        z += incrementZ;
+    }
+
     public void setX(int x) {
         this.x = x;
     }
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public void setZ(int z) {
+        this.z = z;
     }
 
 }

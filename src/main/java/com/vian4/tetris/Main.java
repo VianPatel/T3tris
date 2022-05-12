@@ -7,10 +7,10 @@ public class Main {
     protected static final int WIDTH = 1280;
     protected static final int HEIGHT = 720;
 
-    private static ThreeDTetris app;
+    private static T3tris app;
 
     public static void main(String[] args) {
-        app = new ThreeDTetris();
+        app = new T3tris();
         AppSettings settings = new AppSettings(true);
         settings.setTitle("3D Tetris");
         settings.put("Width", WIDTH);
