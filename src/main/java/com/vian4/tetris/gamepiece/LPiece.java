@@ -6,12 +6,17 @@ import com.vian4.tetris.Point;
 
 public class LPiece extends GamePiece {
     public LPiece(GameBoard gameBoard, ColorRGBA color, int x, int y, int z) {
-        super(gameBoard, color, 1);
-        points = new Point[4];
+        super(gameBoard, color, 1, x, y, z);
+    }
+
+    @Override
+    protected Point[] initPoints(int x, int y, int z) {
+        Point[] points = new Point[4];
         points[0] = new Point(x, y, z);
         points[1] = new Point(x, y + 1, z);
         points[2] = new Point(x, y + 2, z);
         points[3] = new Point(x + 1, y + 2, z);
+        return points;
     }
 
     @Override

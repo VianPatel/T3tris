@@ -11,11 +11,14 @@ public abstract class GamePiece {
     protected final int selectedPointIndex;
     private ColorRGBA color;
 
-    public GamePiece(GameBoard gameBoard, ColorRGBA color, int selectedPointIndex) {
+    public GamePiece(GameBoard gameBoard, ColorRGBA color, int selectedPointIndex, int x, int y, int z) {
+        this.points = initPoints(x, y, z);
         this.gameBoard = gameBoard;
         this.color = color;
         this.selectedPointIndex = selectedPointIndex;
     }
+
+    protected abstract Point[] initPoints(int x, int y, int z);
 
     public ColorRGBA getColor() {
         return color;
