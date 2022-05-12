@@ -146,12 +146,12 @@ public class T3tris extends SimpleApplication {
     public void simpleUpdate(float tpf) {
         timeWaited += tpf;
 
-        if (timeWaited >= 0.6) {
-            timeWaited -= 0.6;//originally 0.2
+        printBoard(board);
+        if (timeWaited >= 0.2) {
+            timeWaited -= 0.2;
             if (!board.currentPieceSelected()) {
                 board.setCurrentPiece(pieces[(int)(Math.random()*pieces.length)].copy());
             }
-            printBoard(board);
             if (!board.currentPiece().moveDown()) {
                 //piece has fallen to bottom (set a new piece)
                 //todo: make random
