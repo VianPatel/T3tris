@@ -117,7 +117,9 @@ public class ThreeDTetris extends SimpleApplication {
                 new MouseAxisTrigger(MouseInput.AXIS_Y, true));
         inputManager.addMapping("RotateY_negative",
                 new MouseAxisTrigger(MouseInput.AXIS_Y, false));
-        inputManager.addListener(analogListener, "RotateX", "RotateX_negative", "RotateY", "RotateY_negative");        
+        inputManager.addListener(analogListener, "RotateX", "RotateX_negative", "RotateY", "RotateY_negative");
+
+        org.lwjgl.input.Mouse.setCursorPosition(Main.WIDTH / 2, Main.HEIGHT / 2);
     }
 
 
