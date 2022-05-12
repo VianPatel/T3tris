@@ -1,7 +1,6 @@
 package com.vian4.tetris.gamepiece;
 
 import com.jme3.math.ColorRGBA;
-import com.jme3.math.Vector3f;
 import com.vian4.tetris.GameBoard;
 import com.vian4.tetris.Point;
 
@@ -21,8 +20,8 @@ public class LPiece extends GamePiece {
     }
 
     @Override
-    protected Vector3f getCenter() {
-        return points[selectedPointIndex].toVector();
+    protected Point getCenter() {
+        return points[selectedPointIndex];
     }
 
     @Override

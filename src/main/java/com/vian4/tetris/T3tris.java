@@ -60,10 +60,6 @@ public class T3tris extends SimpleApplication {
         pieces[0] = new LPiece(board, ColorRGBA.Red, 2, 25, 0);
         pieces[1] = new Square(board, ColorRGBA.Blue, 2, 25, 0);
 
-        //TODO: remove
-        pieces[0] = pieces[1];
-        //TODO: end remove
-
         boxes = new Geometry[board.getBoard().length][board.getBoard()[0].length][board.getBoard()[0][0].length];
 
         for (int r = 0; r < boxes.length; r++) {
@@ -77,11 +73,11 @@ public class T3tris extends SimpleApplication {
 
         inputManager.addMapping("RotateX",
         // new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
-                new KeyTrigger(KeyInput.KEY_UP), 
-                new KeyTrigger(KeyInput.KEY_W));
+                new KeyTrigger(KeyInput.KEY_E), 
+                new KeyTrigger(KeyInput.KEY_PERIOD));
         inputManager.addMapping("RotateZ",
-                new KeyTrigger(KeyInput.KEY_COMMA), 
-                new KeyTrigger(KeyInput.KEY_Z));
+                new KeyTrigger(KeyInput.KEY_Q), 
+                new KeyTrigger(KeyInput.KEY_SLASH));
         inputManager.addMapping("Right",
                 new KeyTrigger(KeyInput.KEY_RIGHT),
                 new KeyTrigger(KeyInput.KEY_D));
@@ -89,14 +85,14 @@ public class T3tris extends SimpleApplication {
                 new KeyTrigger(KeyInput.KEY_LEFT),
                 new KeyTrigger(KeyInput.KEY_A));
         inputManager.addMapping("Down",
-                new KeyTrigger(KeyInput.KEY_DOWN),
-                new KeyTrigger(KeyInput.KEY_S));
+                new KeyTrigger(KeyInput.KEY_X),
+                new KeyTrigger(KeyInput.KEY_COMMA));
         inputManager.addMapping("Front",
-                new KeyTrigger(KeyInput.KEY_SLASH),
-                new KeyTrigger(KeyInput.KEY_Q));
+                new KeyTrigger(KeyInput.KEY_S),
+                new KeyTrigger(KeyInput.KEY_DOWN));
         inputManager.addMapping("Back",
-                new KeyTrigger(KeyInput.KEY_PERIOD),
-                new KeyTrigger(KeyInput.KEY_E));
+                new KeyTrigger(KeyInput.KEY_UP),
+                new KeyTrigger(KeyInput.KEY_W));
         inputManager.addListener(actionListener, "RotateX", "RotateZ", "Right", "Left", "Down", "Front", "Back");
 
 

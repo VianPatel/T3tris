@@ -3,7 +3,6 @@ package com.vian4.tetris.gamepiece;
 import com.vian4.tetris.GameBoard;
 import com.vian4.tetris.Point;
 import com.jme3.math.ColorRGBA;
-import com.jme3.math.Vector3f;
 
 public abstract class GamePiece {
 
@@ -75,6 +74,7 @@ public abstract class GamePiece {
         for (int i = 0; i < points.length; i++) {
             if (i != selectedPointIndex) {
                 newPoints[i] = rotateClockwiseX(points[i]);
+                if (newPoints[i] == null) return true;
             } else {
                 newPoints[i] = points[i];
             }
@@ -91,6 +91,7 @@ public abstract class GamePiece {
         for (int i = 0; i < points.length; i++) {
             if (i != selectedPointIndex) {
                 newPoints[i] = rotateClockwiseZ(points[i]);
+                if (newPoints[i] == null) return true;
             } else {
                 newPoints[i] = points[i];
             }
@@ -146,20 +147,23 @@ public abstract class GamePiece {
     }
 
     protected Point rotateClockwiseX(Point point) {
-        Vector3f center = getCenter();
-        float xDif = point.getX() - center.getX();
-        float yDif = point.getY() - center.getY();
+        Point center = getCenter();
+        if (center == null)
+            return null;
+        int xDif = point.getX() - center.getX();
+        int yDif = point.getY() - center.getY();
         return new Point(center.getX() + yDif, center.getY() - xDif, point.getZ());
     }
 
     protected Point rotateClockwiseZ(Point point) {
-        Vector3f center = getCenter();
-        float zDif = point.getZ() - center.getZ();
-        float yDif = point.getY() - center.getY();
+        Point center = getCenter();
+        if (center == null) return null;
+        int zDif = point.getZ() - center.getZ();
+        int yDif = point.getY() - center.getY();
         return new Point(point.getX(), center.getY() - zDif, center.getZ() + yDif);
     }
 
     public abstract GamePiece copy();
 
-    protected abstract Vector3f getCenter();
+    protected abstract Point getCenter();
 }

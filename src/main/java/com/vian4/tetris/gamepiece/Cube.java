@@ -12,20 +12,22 @@ public class Square extends GamePiece {
 
     @Override
     protected Point[] initPoints(int x, int y, int z) {
-        Point[] points = new Point[4];
+        Point[] points = new Point[8];
         points[0] = new Point(x, y, z);
         points[1] = new Point(x, y + 1, z);
         points[2] = new Point(x + 1, y, z);
         points[3] = new Point(x + 1, y + 1, z);
+        
+        points[4] = new Point(x, y, z + 1);
+        points[5] = new Point(x, y + 1, z + 1);
+        points[6] = new Point(x + 1, y, z + 1);
+        points[7] = new Point(x + 1, y + 1, z + 1);
         return points;
     }
 
     @Override
-    protected Vector3f getCenter() {
-        return new Vector3f(
-                (points[0].getX() + points[1].getX() + points[2].getX() + points[3].getX()) / 4.0f,
-                (points[0].getY() + points[1].getY() + points[2].getY() + points[3].getY()) / 4.0f,
-                (points[0].getZ() + points[1].getZ() + points[2].getZ() + points[3].getZ()) / 4.0f);
+    protected Point getCenter() {
+        return null;
     }
 
     @Override

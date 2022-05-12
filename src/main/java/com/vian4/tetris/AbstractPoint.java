@@ -23,7 +23,4 @@ public abstract class AbstractPoint {
         return z;
     }
 
-    public Vector3f toVector() {
-        return new Vector3f(x, y, z);
-    }
 }
