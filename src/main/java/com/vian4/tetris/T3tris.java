@@ -60,6 +60,10 @@ public class T3tris extends SimpleApplication {
         pieces[0] = new LPiece(board, ColorRGBA.Red, 2, 25, 0);
         pieces[1] = new Square(board, ColorRGBA.Blue, 2, 25, 0);
 
+        //TODO: remove
+        pieces[0] = pieces[1];
+        //TODO: end remove
+
         boxes = new Geometry[board.getBoard().length][board.getBoard()[0].length][board.getBoard()[0][0].length];
 
         for (int r = 0; r < boxes.length; r++) {
@@ -146,8 +150,8 @@ public class T3tris extends SimpleApplication {
     public void simpleUpdate(float tpf) {
         timeWaited += tpf;
 
-        if (timeWaited >= 0.2) {
-            timeWaited -= 0.2;
+        if (timeWaited >= 0.6) {
+            timeWaited -= 0.6;//originally 0.2
             if (!board.currentPieceSelected()) {
                 board.setCurrentPiece(pieces[(int)(Math.random()*pieces.length)].copy());
             }

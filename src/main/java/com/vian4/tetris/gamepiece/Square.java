@@ -1,12 +1,13 @@
 package com.vian4.tetris.gamepiece;
 
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.Vector3f;
 import com.vian4.tetris.GameBoard;
 import com.vian4.tetris.Point;
 
 public class Square extends GamePiece {
     public Square(GameBoard gameBoard, ColorRGBA color, int x, int y, int z) {
-        super(gameBoard, color, 0, x, y, z);
+        super(gameBoard, color, -1, x, y, z);
     }
 
     @Override
@@ -19,15 +20,13 @@ public class Square extends GamePiece {
         return points;
     }
 
-    /*@Override
-    public boolean rotateX() {
-        return true;
-    }
-
     @Override
-    public boolean rotateZ() {
-        return true;
-    }*/
+    protected Vector3f getCenter() {
+        return new Vector3f(
+                (points[0].getX() + points[1].getX() + points[2].getX() + points[3].getX()) / 4.0f,
+                (points[0].getY() + points[1].getY() + points[2].getY() + points[3].getY()) / 4.0f,
+                (points[0].getZ() + points[1].getZ() + points[2].getZ() + points[3].getZ()) / 4.0f);
+    }
 
     @Override
     public GamePiece copy() {

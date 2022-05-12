@@ -3,6 +3,7 @@ package com.vian4.tetris.gamepiece;
 import com.vian4.tetris.GameBoard;
 import com.vian4.tetris.Point;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.Vector3f;
 
 public abstract class GamePiece {
 
@@ -68,12 +69,12 @@ public abstract class GamePiece {
         return true;
     }
 
-    public boolean rotateX() {
+    public final boolean rotateX() {
         Point[] newPoints = new Point[points.length];
 
         for (int i = 0; i < points.length; i++) {
             if (i != selectedPointIndex) {
-                newPoints[i] = rotateClockwiseX(points[selectedPointIndex], points[i]);
+                newPoints[i] = rotateClockwiseX(points[i]);
             } else {
                 newPoints[i] = points[i];
             }
@@ -84,12 +85,12 @@ public abstract class GamePiece {
         return true;
     }
 
-    public boolean rotateZ() {
+    public final boolean rotateZ() {
         Point[] newPoints = new Point[points.length];
 
         for (int i = 0; i < points.length; i++) {
             if (i != selectedPointIndex) {
-                newPoints[i] = rotateClockwiseZ(points[selectedPointIndex], points[i]);
+                newPoints[i] = rotateClockwiseZ(points[i]);
             } else {
                 newPoints[i] = points[i];
             }
@@ -128,34 +129,37 @@ public abstract class GamePiece {
         return true;
     }
 
-    public boolean moveRight() {
+    public final boolean moveRight() {
         return moveX(1);
     }
 
-    public boolean moveLeft() {
+    public final boolean moveLeft() {
         return moveX(-1);
     }
 
-    public boolean moveBack() {
+    public final boolean moveBack() {
         return moveZ(1);
     }
 
-    public boolean moveForward() {
+    public final boolean moveForward() {
         return moveZ(-1);
     }
 
-    private Point rotateClockwiseX(Point center, Point point) {
-        int xDif = point.getX() - center.getX();
-        int yDif = point.getY() - center.getY();
+    protected Point rotateClockwiseX(Point point) {
+        Vector3f center = getCenter();
+        float xDif = point.getX() - center.getX();
+        float yDif = point.getY() - center.getY();
         return new Point(center.getX() + yDif, center.getY() - xDif, point.getZ());
     }
 
-    private Point rotateClockwiseZ(Point center, Point point) {
-        int zDif = point.getZ() - center.getZ();
-        int yDif = point.getY() - center.getY();
+    protected Point rotateClockwiseZ(Point point) {
+        Vector3f center = getCenter();
+        float zDif = point.getZ() - center.getZ();
+        float yDif = point.getY() - center.getY();
         return new Point(point.getX(), center.getY() - zDif, center.getZ() + yDif);
     }
 
     public abstract GamePiece copy();
 
+    protected abstract Vector3f getCenter();
 }
