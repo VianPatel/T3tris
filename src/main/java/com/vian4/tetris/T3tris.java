@@ -24,7 +24,7 @@ import com.jme3.light.AmbientLight;
 import com.jme3.light.SpotLight;
 import com.vian4.tetris.gamepiece.GamePiece;
 import com.vian4.tetris.gamepiece.LPiece;
-import com.vian4.tetris.gamepiece.Square;
+import com.vian4.tetris.gamepiece.Cube;
 
 public class T3tris extends SimpleApplication {
 
@@ -58,7 +58,7 @@ public class T3tris extends SimpleApplication {
         //camNodeRotated.lookAt(new Vector3f(0,10,0), new Vector3f(0, 1, 0));
 
         pieces[0] = new LPiece(board, ColorRGBA.Red, 2, 25, 0);
-        pieces[1] = new Square(board, ColorRGBA.Blue, 2, 25, 0);
+        pieces[1] = new Cube(board, ColorRGBA.Blue, 2, 25, 0);
 
         boxes = new Geometry[board.getBoard().length][board.getBoard()[0].length][board.getBoard()[0][0].length];
 

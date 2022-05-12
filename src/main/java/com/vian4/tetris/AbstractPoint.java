@@ -1,7 +1,5 @@
 package com.vian4.tetris;
 
-import com.jme3.math.Vector3f;
-
 public abstract class AbstractPoint {
     protected int x, y, z;
 
