@@ -14,7 +14,7 @@ public class Square extends GamePiece {
         points[3] = new Point(x + 1, y + 1, z);
     }
 
-    @Override
+    /*@Override
     public boolean rotateX() {
         return true;
     }
@@ -22,7 +22,7 @@ public class Square extends GamePiece {
     @Override
     public boolean rotateZ() {
         return true;
-    }
+    }*/
 
     @Override
     public GamePiece copy() {

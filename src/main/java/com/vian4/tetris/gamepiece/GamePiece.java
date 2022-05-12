@@ -150,7 +150,7 @@ public abstract class GamePiece {
     private Point rotateClockwiseZ(Point center, Point point) {
         int zDif = point.getZ() - center.getZ();
         int yDif = point.getY() - center.getY();
-        return new Point(point.getX(), center.getZ() + yDif, center.getY() - zDif);
+        return new Point(point.getX(), center.getY() - zDif, center.getZ() + yDif);
     }
 
     public abstract GamePiece copy();
