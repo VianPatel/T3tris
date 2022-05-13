@@ -274,7 +274,7 @@ public class T3tris extends SimpleApplication {
                 if (board.currentPieceSelected()) {
                     board.currentPiece().moveLeft();
                 }
-            } else if (name.equals("Down")) {
+            } else if (name.equals("Down") && !keyPressed) {
                 while (board.currentPieceSelected()) {
                     board.currentPiece().moveDown();
                 }
