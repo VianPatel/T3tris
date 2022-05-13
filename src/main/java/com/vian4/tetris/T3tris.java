@@ -83,10 +83,10 @@ public class T3tris extends SimpleApplication {
         inputManager.addMapping("RotateX",
         // new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
                 new KeyTrigger(KeyInput.KEY_E), 
-                new KeyTrigger(KeyInput.KEY_PERIOD));
+                new KeyTrigger(KeyInput.KEY_SLASH));
         inputManager.addMapping("RotateZ",
                 new KeyTrigger(KeyInput.KEY_Q), 
-                new KeyTrigger(KeyInput.KEY_SLASH));
+                new KeyTrigger(KeyInput.KEY_PERIOD));
         inputManager.addMapping("Right",
                 new KeyTrigger(KeyInput.KEY_RIGHT),
                 new KeyTrigger(KeyInput.KEY_D));
@@ -94,7 +94,7 @@ public class T3tris extends SimpleApplication {
                 new KeyTrigger(KeyInput.KEY_LEFT),
                 new KeyTrigger(KeyInput.KEY_A));
         inputManager.addMapping("Down",
-                new KeyTrigger(KeyInput.KEY_X),
+                new KeyTrigger(KeyInput.KEY_Z),
                 new KeyTrigger(KeyInput.KEY_COMMA));
         inputManager.addMapping("Front",
                 new KeyTrigger(KeyInput.KEY_S),
@@ -154,8 +154,8 @@ public class T3tris extends SimpleApplication {
         timeWaited += tpf;
 
         printBoard(board);
-        if (timeWaited >= 0.2) {
-            timeWaited -= 0.2;
+        if (timeWaited >= 0.7) {
+            timeWaited -= 0.7;
             if (!board.currentPieceSelected()) {
                 board.setCurrentPiece(pieces[(int)(Math.random()*pieces.length)].copy());
             }
@@ -275,7 +275,9 @@ public class T3tris extends SimpleApplication {
                     board.currentPiece().moveLeft();
                 }
             } else if (name.equals("Down")) {
-
+                while (board.currentPieceSelected()) {
+                    board.currentPiece().moveDown();
+                }
             } else if (name.equals("Front") && !keyPressed) {
                 if (board.currentPieceSelected()) {
                     board.currentPiece().moveForward();
