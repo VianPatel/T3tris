@@ -42,6 +42,7 @@ public class T3tris extends SimpleApplication {
 
     @Override
     public void simpleInitApp() {
+        setPauseOnLostFocus(true);
         setDisplayStatView(false);
         //Box box = new Box(0.5f, 0.5f, 0.5f);
         board = new GameBoard(20, 24, 10, 10);
