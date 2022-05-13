@@ -32,8 +32,10 @@ public class GameBoard {
 
     private GBPoint[][][] board;
     private GamePiece currentPiece = null;
+    public final int maxHeight;
 
-    public GameBoard(int r, int c, int d) {
+    public GameBoard(int maxHeight, int r, int c, int d) {
+        this.maxHeight = maxHeight;
         board = new GBPoint[r][c][d];
         for (int y = 0; y < board.length; y++) {
             for (int x = 0; x < board[y].length; x++) {

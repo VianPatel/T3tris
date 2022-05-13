@@ -12,15 +12,15 @@ public class Cube extends GamePiece {
     @Override
     protected Point[] initPoints(int x, int y, int z) {
         Point[] points = new Point[8];
-        points[0] = new Point(x, y, z);
-        points[1] = new Point(x, y + 1, z);
-        points[2] = new Point(x + 1, y, z);
-        points[3] = new Point(x + 1, y + 1, z);
+        points[0] = new Point(x, y - 1, z);
+        points[1] = new Point(x, y , z);
+        points[2] = new Point(x + 1, y - 1, z);
+        points[3] = new Point(x + 1, y, z);
         
-        points[4] = new Point(x, y, z + 1);
-        points[5] = new Point(x, y + 1, z + 1);
-        points[6] = new Point(x + 1, y, z + 1);
-        points[7] = new Point(x + 1, y + 1, z + 1);
+        points[4] = new Point(x, y - 1, z + 1);
+        points[5] = new Point(x, y, z + 1);
+        points[6] = new Point(x + 1, y - 1, z + 1);
+        points[7] = new Point(x + 1, y, z + 1);
         return points;
     }
 

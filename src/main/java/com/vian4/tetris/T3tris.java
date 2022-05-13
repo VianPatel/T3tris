@@ -44,7 +44,7 @@ public class T3tris extends SimpleApplication {
     public void simpleInitApp() {
         setDisplayStatView(false);
         //Box box = new Box(0.5f, 0.5f, 0.5f);
-        board = new GameBoard(30, 8, 8);
+        board = new GameBoard(20, 24, 10, 10);
 
         rootNode.attachChild(boxNode);
         boxNode.setShadowMode(ShadowMode.CastAndReceive);
@@ -61,10 +61,10 @@ public class T3tris extends SimpleApplication {
         //camNodeRotated.lookAt(new Vector3f(0,10,0), new Vector3f(0, 1, 0));
 
        
-        pieces[0] = new Cube(board, ColorRGBA.Blue, 2, 25, 0);
-        pieces[1] = new JPiece(board, ColorRGBA.Green, 2, 25, 0);
-        pieces[2] = new LPiece(board, ColorRGBA.Red, 2, 25, 0);
-        pieces[3] = new TPiece(board, ColorRGBA.Orange, 2, 25, 0);
+        pieces[0] = new Cube(board, ColorRGBA.Blue, 2, 23, 0);
+        pieces[1] = new JPiece(board, ColorRGBA.Green, 2, 23, 0);
+        pieces[2] = new LPiece(board, ColorRGBA.Red, 2, 23, 0);
+        pieces[3] = new TPiece(board, ColorRGBA.Orange, 2, 23, 0);
 
         
 
@@ -112,7 +112,7 @@ public class T3tris extends SimpleApplication {
         spot.setSpotRange(1000f); // distance
         spot.setSpotInnerAngle(15f * FastMath.DEG_TO_RAD); // inner light cone (central beam)
         spot.setSpotOuterAngle(35f * FastMath.DEG_TO_RAD); // outer light cone (edge of the light)
-        spot.setColor(ColorRGBA.White.mult(1.3f)); // light color
+        spot.setColor(ColorRGBA.White.mult(1.6f)); // light color
         //spot.setPosition(new Vector3f(0, 30, 2)); // shine from camera loc
         spot.setPosition(camNodeRotated.getWorldTranslation().add(new Vector3f(-50, 250, 0)));
         spot.setDirection((new Vector3f(0, 0, 0)).subtract(new Vector3f(0, 30, 2)).normalize()); // shine forward from camera loc
@@ -158,7 +158,10 @@ public class T3tris extends SimpleApplication {
             if (!board.currentPieceSelected()) {
                 board.setCurrentPiece(pieces[(int)(Math.random()*pieces.length)].copy());
             }
-            board.currentPiece().moveDown();
+            if (board.currentPiece().moveDown()) {
+                System.out.println("Game Over!\nThanks for playing.");
+                stop();
+            }
 
             for (int y = 0; y < board.getBoard().length; y++) {
                 if (board.isYPlainFilled(y)) {

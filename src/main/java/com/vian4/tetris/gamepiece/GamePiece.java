@@ -35,17 +35,22 @@ public abstract class GamePiece {
 
         if (!moved) {
             //freeze object in place
+            int maxY = 0;
             for (Point point: points) {
+                if (point.getY() > maxY) maxY = point.getY();
                 gameBoard.getBoard()[point.getY()][point.getX()][point.getZ()].setOccupied(color);
             }
             gameBoard.setCurrentPiece(null);
+            if (maxY >= gameBoard.maxHeight) {
+                return true;
+            }
             return false;
         }
 
         for (Point point: points) {
             point.incrementY(-1);
         }
-        return true;
+        return false;
     }
 
     public Point[] getPoints() {
