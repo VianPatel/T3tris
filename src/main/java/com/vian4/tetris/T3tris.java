@@ -42,6 +42,7 @@ public class T3tris extends SimpleApplication {
 
     @Override
     public void simpleInitApp() {
+        setDisplayStatView(false);
         //Box box = new Box(0.5f, 0.5f, 0.5f);
         board = new GameBoard(30, 8, 8);
 
@@ -114,9 +115,7 @@ public class T3tris extends SimpleApplication {
         spot.setColor(ColorRGBA.White.mult(1.3f)); // light color
         //spot.setPosition(new Vector3f(0, 30, 2)); // shine from camera loc
         spot.setPosition(camNodeRotated.getWorldTranslation().add(new Vector3f(-50, 250, 0)));
-        Vector3f originDir = (new Vector3f(0, 0, 0)).subtract(new Vector3f(0, 30, 2)).normalize();
-        System.out.println(originDir);
-        spot.setDirection(originDir); // shine forward from camera loc
+        spot.setDirection((new Vector3f(0, 0, 0)).subtract(new Vector3f(0, 30, 2)).normalize()); // shine forward from camera loc
         rootNode.addLight(spot);
 
 
