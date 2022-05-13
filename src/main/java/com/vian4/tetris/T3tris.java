@@ -11,6 +11,7 @@ import com.jme3.renderer.queue.RenderQueue.ShadowMode;
 import com.jme3.scene.CameraNode;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
+import com.jme3.scene.shape.Quad;
 import com.jme3.shadow.SpotLightShadowRenderer;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
@@ -46,6 +47,17 @@ public class T3tris extends SimpleApplication {
         setDisplayStatView(false);
         //Box box = new Box(0.5f, 0.5f, 0.5f);
         board = new GameBoard(20, 24, 10, 10);
+
+
+        Node planeNode = new Node();
+        int planePadding = 2;
+        Geometry plane = new Geometry("Plane", new Quad(2 * planePadding + board.getBoard()[0].length, 2 * planePadding + board.getBoard()[0][0].length));
+        plane.rotate(-90 * FastMath.DEG_TO_RAD, -90 * FastMath.DEG_TO_RAD, 0);
+        plane.setMaterial(getColor(ColorRGBA.Gray));
+        planeNode.attachChild(plane);
+        planeNode.setLocalTranslation(-planePadding - 0.5f, 0.0f, -planePadding - 0.5f);
+        rootNode.attachChild(planeNode);
+        planeNode.setShadowMode(ShadowMode.Receive);
 
         rootNode.attachChild(boxNode);
         boxNode.setShadowMode(ShadowMode.CastAndReceive);
