@@ -154,8 +154,8 @@ public class T3tris extends SimpleApplication {
         timeWaited += tpf;
 
         printBoard(board);
-        if (timeWaited >= 0.7) {
-            timeWaited -= 0.7;
+        if (timeWaited >= 1) {
+            timeWaited -= 1;
             if (!board.currentPieceSelected()) {
                 board.setCurrentPiece(pieces[(int)(Math.random()*pieces.length)].copy());
             }
