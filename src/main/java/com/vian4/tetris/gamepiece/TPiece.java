@@ -15,7 +15,7 @@ public class TPiece extends GamePiece {
         points[0] = new Point(x, y, z);
         points[1] = new Point(x + 1, y, z);
         points[2] = new Point(x - 1, y, z);
-        points[3] = new Point(x, y, z - 1);
+        points[3] = new Point(x, y + 1, z);
         points[4] = new Point(x, y, z + 1);
         return points;
     }
