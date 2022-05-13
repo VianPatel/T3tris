@@ -58,4 +58,38 @@ public class GameBoard {
         return board;
     }
 
+    public boolean isYPlainFilled(int y) {
+        GBPoint[][] plain = board[y];
+        for (GBPoint[] row : plain) {
+            for (GBPoint point : row) {
+                if (!point.isOccupied()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean isXPlainFilled(int x) {
+        for (int y = 0; y < board.length; y++) {
+            for (int z = 0; z < board[y][x].length; z++) {
+                if (!board[y][x][z].isOccupied()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean isZPlainFilled(int z) {
+        for (int y = 0; y < board.length; y++) {
+            for (int x = 0; x < board[y].length; x++) {
+                if (!board[y][x][z].isOccupied()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
 }
