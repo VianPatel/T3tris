@@ -18,6 +18,11 @@ public class GameBoard {
             this.color = color;
         }
 
+        public void setUnoccupied() {
+            this.occupied = false;
+            this.color = null;
+        }
+
         public ColorRGBA getColor() {
             return color;
         }
@@ -58,11 +63,42 @@ public class GameBoard {
         return board;
     }
 
+    public void clearYPlain(int y) {
+        for (y = y + 1; y < board.length; y ++) {
+            for (int x = 0; x < board[y].length; x++) {
+                for (int z = 0; z < board[y][x].length; z++) {
+                    board[y-1][x][z] = board[y][x][z];
+                }
+            }
+        }
+        
+        for (int x = 0; x < board[y - 1].length; x++) {
+            for (int z = 0; z < board[y - 1][x].length; z++) {
+                board[board.length - 1][x][z].setUnoccupied();
+            }
+        }
+    }
+
+    public void clearXPlain(int x) {
+        for (int y = 0; y < board.length; y++) {
+            for (int z = 0; z < board[y][x].length; z++) {
+                board[y][x][z].setUnoccupied();
+            }
+        }
+    }
+
+    public void clearZPlain(int z) {
+        for (int y = 0; y < board.length; y++) {
+            for (int x = 0; x < board[y].length; x++) {
+                board[y][x][z].setUnoccupied();
+            }
+        }
+    }
+
     public boolean isYPlainFilled(int y) {
-        GBPoint[][] plain = board[y];
-        for (GBPoint[] row : plain) {
-            for (GBPoint point : row) {
-                if (!point.isOccupied()) {
+        for (int x = 0; x < board[y].length; x++) {
+            for (int z = 0; z < board[y][x].length; z++) {
+                if (!board[y][x][z].isOccupied()) {
                     return false;
                 }
             }

@@ -159,9 +159,24 @@ public class T3tris extends SimpleApplication {
             if (!board.currentPieceSelected()) {
                 board.setCurrentPiece(pieces[(int)(Math.random()*pieces.length)].copy());
             }
-            if (!board.currentPiece().moveDown()) {
-                //piece has fallen to bottom (set a new piece)
-                //todo: make random
+            board.currentPiece().moveDown();
+
+            for (int y = 0; y < board.getBoard().length; y++) {
+                if (board.isYPlainFilled(y)) {
+                    board.clearYPlain(y);
+                }
+            }
+
+            for (int x = 0; x < board.getBoard()[0].length; x++) {
+                if (board.isXPlainFilled(x)) {
+                    board.clearXPlain(x);
+                }
+            }
+
+            for (int z = 0; z < board.getBoard()[0][0].length; z++) {
+                if (board.isZPlainFilled(z)) {
+                    board.clearZPlain(z);
+                }
             }
             //board.currentPiece().rotate();
         }
