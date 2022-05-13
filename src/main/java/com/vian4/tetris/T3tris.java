@@ -106,8 +106,7 @@ public class T3tris extends SimpleApplication {
                 new KeyTrigger(KeyInput.KEY_LEFT),
                 new KeyTrigger(KeyInput.KEY_A));
         inputManager.addMapping("Down",
-                new KeyTrigger(KeyInput.KEY_Z),
-                new KeyTrigger(KeyInput.KEY_COMMA));
+                new KeyTrigger(KeyInput.KEY_SPACE));
         inputManager.addMapping("Front",
                 new KeyTrigger(KeyInput.KEY_S),
                 new KeyTrigger(KeyInput.KEY_DOWN));
