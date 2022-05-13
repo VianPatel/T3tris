@@ -6,7 +6,6 @@ import com.vian4.tetris.gamepiece.GamePiece;
 public class GameBoard {
 
     public class GBPoint extends AbstractPoint {
-        private boolean occupied = false;
         private ColorRGBA color;
 
         public GBPoint(int x, int y, int z) {
@@ -14,12 +13,10 @@ public class GameBoard {
         }
         
         public void setOccupied(ColorRGBA color) {
-            this.occupied = true;
             this.color = color;
         }
 
         public void setUnoccupied() {
-            this.occupied = false;
             this.color = null;
         }
 
@@ -28,7 +25,7 @@ public class GameBoard {
         }
 
         public boolean isOccupied() {
-            return occupied;
+            return color != null;
         }
 
     }
