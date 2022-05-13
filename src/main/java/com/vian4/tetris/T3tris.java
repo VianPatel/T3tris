@@ -63,7 +63,7 @@ public class T3tris extends SimpleApplication {
         pieces[0] = new Cube(board, ColorRGBA.Blue, 2, 25, 0);
         pieces[1] = new JPiece(board, ColorRGBA.Green, 2, 25, 0);
         pieces[2] = new LPiece(board, ColorRGBA.Red, 2, 25, 0);
-        pieces[3] = new TPiece(board, ColorRGBA.Orange, 2, 25, 0);
+        pieces[3] = new TPiece(board, ColorRGBA.Orange, 2, 25, 1);
 
         
 
@@ -104,7 +104,7 @@ public class T3tris extends SimpleApplication {
 
 
         AmbientLight al = new AmbientLight();
-        al.setColor(ColorRGBA.White.mult(0.3f));
+        al.setColor(ColorRGBA.White.mult(0.4f));
         rootNode.addLight(al);
 
         SpotLight spot = new SpotLight();
