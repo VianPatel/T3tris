@@ -4,8 +4,8 @@ import com.jme3.system.AppSettings;
 
 public class Main {
 
-    protected static final int WIDTH = 1280;
-    protected static final int HEIGHT = 600;//720;
+    private static final int WIDTH = 1280;
+    private static final int HEIGHT = 600;//720;
 
     private static T3tris app;
 
