@@ -5,17 +5,16 @@ import com.jme3.math.Vector3f;
 import com.jme3.post.FilterPostProcessor;
 import com.jme3.post.ssao.SSAOFilter;
 import com.jme3.renderer.queue.RenderQueue.ShadowMode;
-import com.jme3.scene.CameraNode;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.shape.Quad;
 import com.jme3.shadow.SpotLightShadowRenderer;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
+import com.jme3.input.ChaseCamera;
 import com.jme3.input.KeyInput;
 import com.jme3.input.MouseInput;
 import com.jme3.input.controls.ActionListener;
-import com.jme3.input.controls.AnalogListener;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.input.controls.MouseAxisTrigger;
 import com.jme3.light.AmbientLight;
@@ -27,9 +26,6 @@ import com.vian4.t3tris.gamepiece.LPiece;
 import com.vian4.t3tris.gamepiece.TPiece;
 
 public class T3tris extends SimpleApplication {
-    private Node camNodeRotated;
-    private Node camNode;
-
     private GameBoard board;
 
     @Override
@@ -54,14 +50,18 @@ public class T3tris extends SimpleApplication {
         board.getBoxNode().setShadowMode(ShadowMode.CastAndReceive);
         
         flyCam.setEnabled(false);
-        camNodeRotated = new CameraNode("Camera Node", cam);
-        camNode = new Node();
-        camNode.attachChild(camNodeRotated);
 
-        rootNode.attachChild(camNode);
-        camNodeRotated.setLocalTranslation(new Vector3f(-50.0f, (float) (board.yLen()*1.2), 0.0f));
-        //camNodeRotated.lookAt(new Vector3f(0,10,0), new Vector3f(0, 1, 0));
+        Node center = new Node();
+        flyCam.setEnabled(false);
 
+        rootNode.attachChild(center);
+        center.setLocalTranslation(board.xLen() / 2, 0, board.zLen() / 2);
+
+        ChaseCamera chaseCam = new ChaseCamera(cam, center, inputManager);
+        chaseCam.setSmoothMotion(true);
+        chaseCam.setLookAtOffset(Vector3f.UNIT_Y.mult(board.yLen() / 2));
+        chaseCam.setDefaultDistance(3 * Math.max(board.xLen(), Math.max(board.zLen(), board.yLen() / 2)));
+                
         inputManager.addMapping("RotateX",
         // new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
                 new KeyTrigger(KeyInput.KEY_E), 
@@ -96,7 +96,7 @@ public class T3tris extends SimpleApplication {
         spot.setSpotOuterAngle(35f * FastMath.DEG_TO_RAD); // outer light cone (edge of the light)
         spot.setColor(ColorRGBA.White.mult(1.6f)); // light color
         //spot.setPosition(new Vector3f(0, 30, 2)); // shine from camera loc
-        spot.setPosition(camNodeRotated.getWorldTranslation().add(new Vector3f(-50, 250, 0)));
+        spot.setPosition(new Vector3f(-50, 250, 0));
         spot.setDirection((new Vector3f(0, 0, 0)).subtract(new Vector3f(0, 30, 2)).normalize()); // shine forward from camera loc
         rootNode.addLight(spot);
 
@@ -122,8 +122,7 @@ public class T3tris extends SimpleApplication {
                 new MouseAxisTrigger(MouseInput.AXIS_Y, true));
         inputManager.addMapping("MouseRotateY_negative",
                 new MouseAxisTrigger(MouseInput.AXIS_Y, false));
-        inputManager.addListener(analogListener, "MouseRotateX", "MouseRotateX_negative", "MouseRotateY", "MouseRotateY_negative");
-
+        
         org.lwjgl.input.Mouse.setCursorPosition(Main.WIDTH / 2, Main.HEIGHT / 2);
     }
 
@@ -189,29 +188,6 @@ public class T3tris extends SimpleApplication {
         }
         return new TPiece(board, ColorRGBA.Orange, 2, 23, 0);
     }
-
-    private final AnalogListener analogListener = new AnalogListener() {
-        boolean movedToCenter = false;
-
-        @Override
-        public void onAnalog(String name, float value, float tpf) {
-            if (movedToCenter) {
-                movedToCenter = false;
-                return;
-            }
-            if (name.equals("MouseRotateX")) {
-                camNode.rotate(0, (float) (value * speed * 8), 0);
-            } else if (name.equals("MouseRotateX_negative")) {
-                camNode.rotate(0, (float) (-value * speed * 8), 0);
-            } else if (name.equals("MouseRotateY")) {
-                camNode.rotate(0, 0, (float) (-value * speed));
-            } else if (name.equals("MouseRotateY_negative")) {
-                camNode.rotate(0, 0, (float) (value * speed));
-//                org.lwjgl.input.Mouse.setCursorPosition(Main.WIDTH / 2, Main.HEIGHT / 2);
-            }
-            camNodeRotated.lookAt(new Vector3f(0, 10, 0), new Vector3f(0, 1, 0));
-        }
-    };
 
     private final ActionListener actionListener = new ActionListener() {
         @Override
