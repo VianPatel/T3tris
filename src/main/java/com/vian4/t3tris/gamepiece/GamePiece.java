@@ -191,11 +191,11 @@ public abstract class GamePiece {
     }
 
     public final boolean moveBack() {
-        return moveZ(1);
+        return moveZ(-1);
     }
 
     public final boolean moveForward() {
-        return moveZ(-1);
+        return moveZ(1);
     }
 
     protected Point rotateClockwiseX(Point point) {
