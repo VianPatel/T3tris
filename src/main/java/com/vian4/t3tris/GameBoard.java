@@ -1,7 +1,7 @@
-package com.vian4.tetris;
+package com.vian4.t3tris;
 
 import com.jme3.math.ColorRGBA;
-import com.vian4.tetris.gamepiece.GamePiece;
+import com.vian4.t3tris.gamepiece.GamePiece;
 
 public class GameBoard {
 

@@ -1,4 +1,4 @@
-package com.vian4.tetris;
+package com.vian4.t3tris;
 
 import com.jme3.system.AppSettings;
 

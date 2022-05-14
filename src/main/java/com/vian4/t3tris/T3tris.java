@@ -1,4 +1,4 @@
-package com.vian4.tetris;
+package com.vian4.t3tris;
 
 import java.util.HashMap;
 
@@ -23,11 +23,11 @@ import com.jme3.input.controls.KeyTrigger;
 import com.jme3.input.controls.MouseAxisTrigger;
 import com.jme3.light.AmbientLight;
 import com.jme3.light.SpotLight;
-import com.vian4.tetris.gamepiece.GamePiece;
-import com.vian4.tetris.gamepiece.JPiece;
-import com.vian4.tetris.gamepiece.LPiece;
-import com.vian4.tetris.gamepiece.TPiece;
-import com.vian4.tetris.gamepiece.Cube;
+import com.vian4.t3tris.gamepiece.Cube;
+import com.vian4.t3tris.gamepiece.GamePiece;
+import com.vian4.t3tris.gamepiece.JPiece;
+import com.vian4.t3tris.gamepiece.LPiece;
+import com.vian4.t3tris.gamepiece.TPiece;
 
 public class T3tris extends SimpleApplication {
 

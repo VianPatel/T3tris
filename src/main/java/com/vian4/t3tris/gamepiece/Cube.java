@@ -1,8 +1,8 @@
-package com.vian4.tetris.gamepiece;
+package com.vian4.t3tris.gamepiece;
 
 import com.jme3.math.ColorRGBA;
-import com.vian4.tetris.GameBoard;
-import com.vian4.tetris.Point;
+import com.vian4.t3tris.GameBoard;
+import com.vian4.t3tris.Point;
 
 public class Cube extends GamePiece {
     public Cube(GameBoard gameBoard, ColorRGBA color, int x, int y, int z) {
