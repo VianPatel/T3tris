@@ -1,6 +1,8 @@
 package com.vian4.t3tris.gamepiece;
 
 import com.jme3.math.ColorRGBA;
+import com.jme3.scene.Geometry;
+import com.jme3.scene.Node;
 import com.vian4.t3tris.GameBoard;
 import com.vian4.t3tris.Point;
 
@@ -8,14 +10,40 @@ public abstract class GamePiece {
 
     protected GameBoard gameBoard;
     protected Point[] points;
+    protected Geometry[] shapes;
     protected final int selectedPointIndex;
+
+    private WireframeGamePiece wireframeGamePiece;
     private ColorRGBA color;
+    private Node gamePieceNode = new Node();
 
     public GamePiece(GameBoard gameBoard, ColorRGBA color, int selectedPointIndex, int x, int y, int z) {
         this.points = initPoints(x, y, z);
+
+        wireframeGamePiece = new WireframeGamePiece(gameBoard, this);
+        
+        shapes = new Geometry[points.length];
+        for (int i = 0; i < shapes.length; i++) {
+            shapes[i] = gameBoard.getBoxShape();
+            shapes[i].setMaterial(gameBoard.getColor(color));
+            gamePieceNode.attachChild(shapes[i]);
+        }
+        gameBoard.getBoxNode().attachChild(gamePieceNode);
+        updateNodeTranslation();
         this.gameBoard = gameBoard;
         this.color = color;
         this.selectedPointIndex = selectedPointIndex;
+    }
+
+    public Node getNode() {
+        return gamePieceNode;
+    }
+
+    private void updateNodeTranslation() {
+        for (int i = 0; i < points.length; i++) {
+            shapes[i].setLocalTranslation(points[i].getX(), points[i].getY(), points[i].getZ());
+        }
+        wireframeGamePiece.updateNodeTranslation();
     }
 
     protected abstract Point[] initPoints(int x, int y, int z);
@@ -24,10 +52,14 @@ public abstract class GamePiece {
         return color;
     }
 
+    private void delete() {
+        gameBoard.getBoxNode().detachChild(gamePieceNode);
+    }
+
     public boolean moveDown() {
         boolean moved = true;
         for (Point point: points) {
-            if (point.getY() < 1 || gameBoard.getBoard()[point.getY()-1][point.getX()][point.getZ()].isOccupied()) {
+            if (point.getY() < 1 || gameBoard.getSlot(point.getY()-1, point.getX(), point.getZ()) != null) {
                 moved = false;
                 break;
             }
@@ -36,9 +68,14 @@ public abstract class GamePiece {
         if (!moved) {
             //freeze object in place
             int maxY = 0;
-            for (Point point: points) {
-                if (point.getY() > maxY) maxY = point.getY();
-                gameBoard.getBoard()[point.getY()][point.getX()][point.getZ()].setOccupied(color);
+            for (int i = 0; i < points.length; i++) {
+                if (points[i].getY() > maxY) {
+                    maxY = points[i].getY();
+                }
+                gamePieceNode.detachAllChildren();
+                wireframeGamePiece.delete();
+                this.delete();
+                gameBoard.setSlot(points[i].getY(), points[i].getX(), points[i].getZ(), shapes[i]);
             }
             gameBoard.setCurrentPiece(null);
             if (maxY >= gameBoard.maxHeight) {
@@ -50,6 +87,8 @@ public abstract class GamePiece {
         for (Point point: points) {
             point.incrementY(-1);
         }
+
+        updateNodeTranslation();
         return false;
     }
 
@@ -57,16 +96,20 @@ public abstract class GamePiece {
         return points;
     }
 
+    public Geometry[] getShapes() {
+        return shapes;
+    }
+
     //todo: fix issue with validation
     private boolean validate(Point[] points) {
         for (Point validatePoint : points) {
-            if (validatePoint.getY() >= gameBoard.getBoard().length ||
+            if (validatePoint.getY() >= gameBoard.yLen() ||
                     validatePoint.getY() < 0 ||
-                    validatePoint.getX() >= gameBoard.getBoard()[0].length ||
+                    validatePoint.getX() >= gameBoard.xLen() ||
                     validatePoint.getX() < 0 ||
-                    validatePoint.getZ() >= gameBoard.getBoard()[0][0].length ||
+                    validatePoint.getZ() >= gameBoard.zLen() ||
                     validatePoint.getZ() < 0 ||
-                    gameBoard.getBoard()[validatePoint.getY()][validatePoint.getX()][validatePoint.getZ()].isOccupied()) {
+                    gameBoard.getSlot(validatePoint.getY(), validatePoint.getX(), validatePoint.getZ()) != null) {
                 return false;
             }
         }
@@ -87,6 +130,7 @@ public abstract class GamePiece {
 
         if (!validate(newPoints)) return false;
         points = newPoints;
+        updateNodeTranslation();
         return true;
     }
 
@@ -105,6 +149,7 @@ public abstract class GamePiece {
         if (!validate(newPoints))
             return false;
         points = newPoints;
+        updateNodeTranslation();
         return true;
     }
 
@@ -118,6 +163,7 @@ public abstract class GamePiece {
         if (!validate(newPoints)) return false;
 
         points = newPoints;
+        updateNodeTranslation();
         return true;
     }
 
@@ -132,6 +178,7 @@ public abstract class GamePiece {
             return false;
 
         points = newPoints;
+        updateNodeTranslation();
         return true;
     }
 
