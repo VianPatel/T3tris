@@ -35,8 +35,8 @@ public abstract class GamePiece {
         this.selectedPointIndex = selectedPointIndex;
     }
 
-    public Node getNode() {
-        return gamePieceNode;
+    private void delete() {
+        gameBoard.getBoxNode().detachChild(gamePieceNode);
     }
 
     private void updateNodeTranslation() {
@@ -48,12 +48,12 @@ public abstract class GamePiece {
 
     protected abstract Point[] initPoints(int x, int y, int z);
 
-    public ColorRGBA getColor() {
-        return color;
+    public Node getNode() {
+        return gamePieceNode;
     }
 
-    private void delete() {
-        gameBoard.getBoxNode().detachChild(gamePieceNode);
+    public ColorRGBA getColor() {
+        return color;
     }
 
     public boolean moveDown() {
@@ -214,8 +214,6 @@ public abstract class GamePiece {
         int yDif = point.getY() - center.getY();
         return new Point(point.getX(), center.getY() - zDif, center.getZ() + yDif);
     }
-
-    public abstract GamePiece copy();
 
     protected abstract Point getCenter();
 }

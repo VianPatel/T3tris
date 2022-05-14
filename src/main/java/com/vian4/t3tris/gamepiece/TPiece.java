@@ -24,9 +24,4 @@ public class TPiece extends GamePiece {
     protected Point getCenter() {
         return points[selectedPointIndex];
     }
-
-    @Override
-    public GamePiece copy() {
-        return new TPiece(gameBoard, getColor(), points[0].getX(), points[0].getY(), points[0].getZ());
-    }
 }

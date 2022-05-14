@@ -1,9 +1,6 @@
 package com.vian4.t3tris;
 
-import java.util.HashMap;
-
 import com.jme3.app.SimpleApplication;
-import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
 import com.jme3.post.FilterPostProcessor;
 import com.jme3.post.ssao.SSAOFilter;

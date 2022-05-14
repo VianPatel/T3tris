@@ -28,9 +28,4 @@ public class Cube extends GamePiece {
     protected Point getCenter() {
         return null;
     }
-
-    @Override
-    public GamePiece copy() {
-        return new Cube(gameBoard, getColor(), points[0].getX(), points[0].getY(), points[0].getZ());
-    }
 }
