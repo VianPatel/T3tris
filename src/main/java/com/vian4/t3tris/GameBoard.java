@@ -7,7 +7,6 @@ import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
-import com.jme3.scene.shape.Box;
 import com.vian4.t3tris.gamepiece.GamePiece;
 
 public class GameBoard {
@@ -38,11 +37,11 @@ public class GameBoard {
 
         Geometry wireframeBoxShape = new Geometry("coordinate axis", blankBoxShape.getMesh());
         //wireframeBoxShape.setLocalTranslation(x, y, z);
-        Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-        mat.getAdditionalRenderState().setWireframe(true);
-        mat.getAdditionalRenderState().setLineWidth(1);
-        mat.setColor("Color", ColorRGBA.Gray);
-        wireframeBoxShape.setMaterial(mat);
+        Material material = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+        material.getAdditionalRenderState().setWireframe(true);
+        material.getAdditionalRenderState().setLineWidth(1);
+        material.setColor("Color", ColorRGBA.Gray);
+        wireframeBoxShape.setMaterial(material);
         this.wireframeBoxShape = wireframeBoxShape;
     }
 

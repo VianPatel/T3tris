@@ -1,6 +1,6 @@
 package com.vian4.t3tris.gamepiece;
 
-import com.jme3.material.Material;
+import com.jme3.renderer.queue.RenderQueue.ShadowMode;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.vian4.t3tris.GameBoard;
@@ -24,6 +24,7 @@ public class WireframeGamePiece {
             //shapes[i].setMaterial(board.getColor(color));
             wireframeNode.attachChild(shapes[i]);
         }
+        wireframeNode.setShadowMode(ShadowMode.Off);
         board.getBoxNode().attachChild(wireframeNode);
     }
 
