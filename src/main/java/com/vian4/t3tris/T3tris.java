@@ -31,7 +31,6 @@ public class T3tris extends SimpleApplication {
     private Node camNode;
 
     private GameBoard board;
-    //private GamePiece[] pieces = new GamePiece[4];
 
     @Override
     public void simpleInitApp() {
@@ -62,12 +61,6 @@ public class T3tris extends SimpleApplication {
         rootNode.attachChild(camNode);
         camNodeRotated.setLocalTranslation(new Vector3f(-50.0f, (float) (board.yLen()*1.2), 0.0f));
         //camNodeRotated.lookAt(new Vector3f(0,10,0), new Vector3f(0, 1, 0));
-
-       
-        /*pieces[0] = new Cube(board, ColorRGBA.Blue, 2, 23, 0);
-        pieces[1] = new JPiece(board, ColorRGBA.Green, 2, 23, 0);
-        pieces[2] = new LPiece(board, ColorRGBA.Red, 2, 23, 0);
-        pieces[3] = new TPiece(board, ColorRGBA.Orange, 2, 23, 0);*/
 
         inputManager.addMapping("RotateX",
         // new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
@@ -145,12 +138,11 @@ public class T3tris extends SimpleApplication {
         if (timeWaited >= 1) {
             timeWaited -= 1;
             if (!board.currentPieceSelected()) {
-                //board.setCurrentPiece(pieces[(int)(Math.random()*pieces.length)].copy());
-                board.setCurrentPiece(new Cube(board, ColorRGBA.Blue, 2, 23, 0));
+                board.setCurrentPiece(getRandomPiece());
             }
             if (board.currentPiece().moveDown()) {
                 System.out.println("Game Over!\nThanks for playing.");
-                //stop();
+                stop();
             }
 
             for (int y = 0; y < board.yLen(); y++) {
@@ -184,6 +176,18 @@ public class T3tris extends SimpleApplication {
             }
         }
         return false;
+    }
+
+    public GamePiece getRandomPiece() {
+        int rand = (int) (Math.random() * 4);
+        if (rand == 0) {
+            return new Cube(board, ColorRGBA.Blue, 2, 23, 0);
+        } else if (rand == 1) {
+            return new JPiece(board, ColorRGBA.Green, 2, 23, 0);
+        } else if (rand == 2) {
+            return new LPiece(board, ColorRGBA.Red, 2, 23, 0);
+        }
+        return new TPiece(board, ColorRGBA.Orange, 2, 23, 0);
     }
 
     private final AnalogListener analogListener = new AnalogListener() {
