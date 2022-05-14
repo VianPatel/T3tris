@@ -60,7 +60,12 @@ public class T3tris extends SimpleApplication {
         ChaseCamera chaseCam = new ChaseCamera(cam, center, inputManager);
         chaseCam.setSmoothMotion(true);
         chaseCam.setLookAtOffset(Vector3f.UNIT_Y.mult(board.yLen() / 2));
-        chaseCam.setDefaultDistance(3 * Math.max(board.xLen(), Math.max(board.zLen(), board.yLen() / 2)));
+
+        float minDistance = (float) Math.sqrt(board.xLen() * board.xLen() + board.yLen() * board.yLen() + board.zLen() * board.zLen());
+        chaseCam.setMinDistance(minDistance * 1.1f);
+        chaseCam.setDefaultDistance(minDistance * 1.5f);
+        chaseCam.setMaxDistance(minDistance * 2.5f);
+        chaseCam.setInvertVerticalAxis(true);
                 
         inputManager.addMapping("RotateX",
         // new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
