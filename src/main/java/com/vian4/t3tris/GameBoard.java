@@ -7,6 +7,7 @@ import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
+import com.jme3.scene.shape.Box;
 import com.vian4.t3tris.gamepiece.GamePiece;
 
 public class GameBoard {
@@ -14,7 +15,8 @@ public class GameBoard {
 
     private Node boxNode;
     
-    private Geometry boxShape;
+    private Geometry pointBoxShape;
+    private Geometry blankBoxShape;
     private Geometry wireframeBoxShape;
 
     private AssetManager assetManager;
@@ -31,9 +33,11 @@ public class GameBoard {
 
         this.assetManager = assetManager;
 
-        boxShape = (Geometry) assetManager.loadModel("Point.obj");
+        pointBoxShape = (Geometry) assetManager.loadModel("Point.obj");
+        blankBoxShape = (Geometry) assetManager.loadModel("Box.obj");
 
-        Geometry wireframeBoxShape = new Geometry("coordinate axis", boxShape.getMesh());
+        Geometry wireframeBoxShape = new Geometry("coordinate axis", blankBoxShape.getMesh());
+        //wireframeBoxShape.setLocalTranslation(x, y, z);
         Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         mat.getAdditionalRenderState().setWireframe(true);
         mat.getAdditionalRenderState().setLineWidth(4);
@@ -59,7 +63,7 @@ public class GameBoard {
     }
 
     public Geometry getBoxShape() {
-        return boxShape.clone();
+        return pointBoxShape.clone();
     }
 
     public Geometry getWireframeBoxShape() {
