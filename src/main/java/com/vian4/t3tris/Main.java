@@ -7,10 +7,8 @@ public class Main {
     private static final int WIDTH = 1280;
     private static final int HEIGHT = 600;//720;
 
-    private static T3tris app;
-
     public static void main(String[] args) {
-        app = new T3tris();
+        T3tris app = new T3tris();
         AppSettings settings = new AppSettings(true);
         settings.setTitle("T3tris");
         settings.put("Width", WIDTH);
