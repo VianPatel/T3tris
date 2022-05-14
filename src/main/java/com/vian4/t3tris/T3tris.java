@@ -199,13 +199,13 @@ public class T3tris extends SimpleApplication {
                 movedToCenter = false;
                 return;
             }
-            if ("MouseRotateX".equals(name)) {
+            if (name.equals("MouseRotateX")) {
                 camNode.rotate(0, (float) (value * speed * 8), 0);
-            } else if ("MouseRotateX_negative".equals(name)) {
+            } else if (name.equals("MouseRotateX_negative")) {
                 camNode.rotate(0, (float) (-value * speed * 8), 0);
-            } else if ("MouseRotateY".equals(name)) {
+            } else if (name.equals("MouseRotateY")) {
                 camNode.rotate(0, 0, (float) (-value * speed));
-            } else if ("MouseRotateY_negative".equals(name)) {
+            } else if (name.equals("MouseRotateY_negative")) {
                 camNode.rotate(0, 0, (float) (value * speed));
 //                org.lwjgl.input.Mouse.setCursorPosition(Main.WIDTH / 2, Main.HEIGHT / 2);
             }
