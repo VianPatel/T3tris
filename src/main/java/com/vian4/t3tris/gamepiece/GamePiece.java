@@ -35,9 +35,7 @@ public abstract class GamePiece {
         this.selectedPointIndex = selectedPointIndex;
     }
 
-    @Override
-    protected void finalize() {
-        gamePieceNode.detachAllChildren();
+    private void destroy() {
         gameBoard.getBoxNode().detachChild(gamePieceNode);
     }
     
@@ -74,6 +72,9 @@ public abstract class GamePiece {
                 if (points[i].getY() > maxY) {
                     maxY = points[i].getY();
                 }
+                gamePieceNode.detachAllChildren();
+                wireframeGamePiece.destroy();
+                this.destroy();
                 gameBoard.setSlot(points[i].getY(), points[i].getX(), points[i].getZ(), shapes[i]);
             }
             gameBoard.setCurrentPiece(null);
