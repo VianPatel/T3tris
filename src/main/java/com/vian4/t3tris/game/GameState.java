@@ -299,6 +299,7 @@ public class GameState extends BaseAppState {
                         board.currentPiece().moveX(-1);
                     }
                 }
+            }
         }
     };
 
