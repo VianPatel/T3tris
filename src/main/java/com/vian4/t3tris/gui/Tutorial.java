@@ -26,13 +26,12 @@ public class Tutorial extends GuiState {
 
         Container startContainer = new Container();
         selfNode.attachChild(startContainer);
-        startContainer.setLocalTranslation(t3tris.getWidth() / 2, t3tris.getHeight() / 3, 0);
+        startContainer.setLocalTranslation(t3tris.getWidth() / 2, t3tris.getHeight() / 4, 0);
 
-        Button clickMe = startContainer.addChild(new Button("Click Me"));
+        Button clickMe = startContainer.addChild(new Button("Start"));
         clickMe.addClickCommands(new Command<Button>() {
             @Override
             public void execute(Button source) {
-                System.out.println("Clicked");
                 t3tris.getStateManager().detach(t3tris.getStateManager().getState(Tutorial.class));
                 t3tris.getStateManager().attach(new GameState());
             }
