@@ -1,6 +1,10 @@
 package com.vian4.t3tris;
 
 import java.awt.GraphicsEnvironment;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import com.jme3.app.SimpleApplication;
 import com.jme3.system.AppSettings;
 import com.simsilica.lemur.GuiGlobals;
@@ -18,7 +22,13 @@ public class T3tris extends SimpleApplication {
         //settings.setFullscreen(true);
         settings.setVSync(true);
         settings.setGammaCorrection(true);
-        settings.setSettingsDialogImage("T3trisIcon.png");
+        try {
+            settings.setIcons(new BufferedImage[]{
+                    ImageIO.read(T3tris.class.getResourceAsStream("/T3trisIcon256.png")),
+                    ImageIO.read(T3tris.class.getResourceAsStream("/T3trisIcon128.png")),
+                    ImageIO.read(T3tris.class.getResourceAsStream("/T3trisIcon32.png")),
+                    ImageIO.read(T3tris.class.getResourceAsStream("/T3trisIcon16.png"))});
+        } catch (IOException ignored) {}
         app.setShowSettings(false);
         app.setDisplayStatView(false);
         app.setDisplayFps(false);
