@@ -1,5 +1,8 @@
 package com.vian4.t3tris.game;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 import com.jme3.app.Application;
 import com.jme3.app.state.BaseAppState;
 import com.jme3.asset.AssetManager;
@@ -236,15 +239,19 @@ public class GameState extends BaseAppState {
 
 
     public GamePiece getRandomPiece() {
-        int rand = (int) (Math.random() * 4);
-        if (rand == 0) {
-            return new Cube(board, ColorRGBA.Blue, 2, 23, 0);
-        } else if (rand == 1) {
-            return new JPiece(board, ColorRGBA.Green, 2, 23, 0);
-        } else if (rand == 2) {
-            return new LPiece(board, ColorRGBA.Red, 2, 23, 0);
+        int rand = (int) (Math.random() * 29) + 1;
+        GamePiece piece = null;
+        try {
+            piece = (GamePiece) Class.forName("com.vian4.t3tris.gamepiece.Piece" + rand).getConstructor(GameBoard.class, ColorRGBA.class, Integer.TYPE, Integer.TYPE, Integer.TYPE).newInstance(board, getRandomColor(), 2, 23, 0);
+        } catch (ClassNotFoundException | ClassCastException | NoSuchMethodException | InstantiationException | IllegalArgumentException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+            piece = new Piece1(board, getRandomColor(), 2, 23, 0);
         }
-        return new TPiece(board, ColorRGBA.Orange, 2, 23, 0);
+        return piece;
+    }
+
+    public ColorRGBA getRandomColor() {
+        return ColorRGBA.Cyan;
     }
 
     
