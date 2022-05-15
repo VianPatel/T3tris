@@ -1,7 +1,11 @@
 package com.vian4.t3tris.game;
 
-import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import com.jme3.app.Application;
 import com.jme3.app.state.BaseAppState;
@@ -23,6 +27,7 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.shape.Quad;
 import com.jme3.shadow.SpotLightShadowRenderer;
+
 import com.vian4.t3tris.T3tris;
 import com.vian4.t3tris.gamepiece.*;
 
@@ -244,6 +249,7 @@ public class GameState extends BaseAppState {
         try {
             piece = (GamePiece) Class.forName("com.vian4.t3tris.gamepiece.Piece" + rand).getConstructor(GameBoard.class, ColorRGBA.class, Integer.TYPE, Integer.TYPE, Integer.TYPE).newInstance(board, getRandomColor(), 2, 23, 0);
         } catch (ClassNotFoundException | ClassCastException | NoSuchMethodException | InstantiationException | IllegalArgumentException | IllegalAccessException | InvocationTargetException e) {
+            System.out.println("Error creating class com.vian4.t3tris.gamepiece.Piece" + rand);
             e.printStackTrace();
             piece = new Piece1(board, getRandomColor(), 2, 23, 0);
         }
@@ -251,7 +257,26 @@ public class GameState extends BaseAppState {
     }
 
     public ColorRGBA getRandomColor() {
-        return ColorRGBA.Cyan;
+        List<ColorRGBA> disallowedColors = Arrays.asList(new ColorRGBA[]{ColorRGBA.White, ColorRGBA.LightGray, ColorRGBA.Gray, ColorRGBA.DarkGray, ColorRGBA.Black, ColorRGBA.BlackNoAlpha});
+
+        List<ColorRGBA> validColors = new ArrayList<>();
+
+        for (Field color: ColorRGBA.class.getDeclaredFields()) {
+            int modifiers = color.getModifiers();
+            try {
+                if (Modifier.isPublic(modifiers) && Modifier.isStatic(modifiers) && Modifier.isFinal(modifiers) &&
+                        color.get(null) instanceof ColorRGBA &&
+                        !disallowedColors.contains((ColorRGBA) (color.get(null)))) {
+                    validColors.add((ColorRGBA) color.get(null));
+                }
+            } catch (IllegalArgumentException | IllegalAccessException e) {}
+        }
+        
+        if (validColors.size() == 0) {
+            return ColorRGBA.randomColor();
+        }
+
+        return validColors.get((int) (Math.random() * validColors.size()));
     }
 
     
