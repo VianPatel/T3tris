@@ -199,7 +199,7 @@ public class GameState extends BaseAppState {
         t3tris.getViewPort().addProcessor(slsr);
 
         FilterPostProcessor fpp = new FilterPostProcessor(assetManager);
-        SSAOFilter ssaoFilter = new SSAOFilter(12.94f, 43.92f, 0.33f, 0.61f);
+        SSAOFilter ssaoFilter = new SSAOFilter(15f, 40f, 0.4f, 0.6f);
         fpp.addFilter(ssaoFilter);
         t3tris.getViewPort().addProcessor(fpp);
     }
