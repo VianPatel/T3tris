@@ -5,31 +5,30 @@ import com.simsilica.lemur.Button;
 import com.simsilica.lemur.Command;
 import com.simsilica.lemur.Container;
 import com.simsilica.lemur.Label;
-import com.vian4.t3tris.T3tris;
 import com.vian4.t3tris.game.GameState;
 
 public class Tutorial extends GuiState {
 
     @Override
     protected void initialize() {
-        // Create a simple container for our elements
-        Container myWindow = new Container();
-        selfNode.attachChild(myWindow);
-
-        // Put it somewhere that we will see it
-        // Note: Lemur GUI elements grow down from the upper left corner.
-        myWindow.setLocalTranslation(T3tris.WIDTH / 2, T3tris.HEIGHT * 3 / 4, 0);
-
         Picture pic = new Picture("T3trisLogo");
         pic.setImage(t3tris.getAssetManager(), "T3trisLogo.png", true);
-        pic.setWidth(T3tris.WIDTH / 2);
-        pic.setHeight(T3tris.HEIGHT / 2);
-        pic.setPosition(T3tris.WIDTH / 4, T3tris.HEIGHT / 4);
+        pic.setWidth(t3tris.getWidth() / 2);
+        pic.setHeight(t3tris.getHeight() / 2);
+        pic.setPosition(t3tris.getWidth() / 4, t3tris.getHeight() / 4);
         selfNode.attachChild(pic);
 
-        // Add some elements
-        myWindow.addChild(new Label("Welcome to T3^Dtris"));
-        Button clickMe = myWindow.addChild(new Button("Click Me"));
+        Container welcomeContainer = new Container();
+        selfNode.attachChild(welcomeContainer);
+        welcomeContainer.setLocalTranslation(t3tris.getWidth() / 2, t3tris.getHeight() * 4 / 5, 0);
+        welcomeContainer.addChild(new Label("Welcome to"));
+
+
+        Container startContainer = new Container();
+        selfNode.attachChild(startContainer);
+        startContainer.setLocalTranslation(t3tris.getWidth() / 2, t3tris.getHeight() / 3, 0);
+
+        Button clickMe = startContainer.addChild(new Button("Click Me"));
         clickMe.addClickCommands(new Command<Button>() {
             @Override
             public void execute(Button source) {
