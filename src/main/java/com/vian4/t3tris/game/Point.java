@@ -1,4 +1,4 @@
-package com.vian4.t3tris;
+package com.vian4.t3tris.game;
 
 public class Point {
     

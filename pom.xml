@@ -198,7 +198,7 @@
                             </filters>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.vian4.t3tris.Main</mainClass>
+                                    <mainClass>com.vian4.t3tris.T3tris</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>

@@ -1,8 +1,8 @@
 package com.vian4.t3tris.gamepiece;
 
 import com.jme3.math.ColorRGBA;
-import com.vian4.t3tris.GameBoard;
-import com.vian4.t3tris.Point;
+import com.vian4.t3tris.game.GameBoard;
+import com.vian4.t3tris.game.Point;
 
 public class JPiece extends GamePiece {
     public JPiece(GameBoard gameBoard, ColorRGBA color, int x, int y, int z) {

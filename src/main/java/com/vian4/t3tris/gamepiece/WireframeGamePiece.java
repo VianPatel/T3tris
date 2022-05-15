@@ -3,8 +3,8 @@ package com.vian4.t3tris.gamepiece;
 import com.jme3.renderer.queue.RenderQueue.ShadowMode;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
-import com.vian4.t3tris.GameBoard;
-import com.vian4.t3tris.Point;
+import com.vian4.t3tris.game.GameBoard;
+import com.vian4.t3tris.game.Point;
 
 public class WireframeGamePiece {
     private GamePiece piece;
