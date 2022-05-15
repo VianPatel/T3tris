@@ -34,8 +34,8 @@ public class Tutorial extends GuiState {
             @Override
             public void execute(Button source) {
                 System.out.println("Clicked");
-                t3tris.getStateManager().attach(new GameState());
                 t3tris.getStateManager().detach(t3tris.getStateManager().getState(Tutorial.class));
+                t3tris.getStateManager().attach(new GameState());
             }
         });
         
