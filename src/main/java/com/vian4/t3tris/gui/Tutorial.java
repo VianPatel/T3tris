@@ -6,6 +6,7 @@ import com.simsilica.lemur.Command;
 import com.simsilica.lemur.Container;
 import com.simsilica.lemur.Label;
 import com.vian4.t3tris.T3tris;
+import com.vian4.t3tris.game.GameState;
 
 public class Tutorial extends GuiState {
 
@@ -33,6 +34,8 @@ public class Tutorial extends GuiState {
             @Override
             public void execute(Button source) {
                 System.out.println("Clicked");
+                t3tris.getStateManager().attach(new GameState());
+                t3tris.getStateManager().detach(t3tris.getStateManager().getState(Tutorial.class));
             }
         });
         
