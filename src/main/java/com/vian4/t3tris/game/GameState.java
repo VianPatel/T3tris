@@ -118,7 +118,7 @@ public class GameState extends BaseAppState {
         Geometry plane = new Geometry("Plane",
                 new Quad(2 * planePadding + board.xLen(), 2 * planePadding + board.zLen()));
         plane.rotate(-90 * FastMath.DEG_TO_RAD, -90 * FastMath.DEG_TO_RAD, 0);
-        plane.setMaterial(board.getColor(ColorRGBA.Gray));
+        plane.setMaterial(board.getColor(ColorRGBA.LightGray));
         planeNode.attachChild(plane);
         planeNode.setLocalTranslation(-planePadding - 0.5f, 0.0f, -planePadding - 0.5f);
 

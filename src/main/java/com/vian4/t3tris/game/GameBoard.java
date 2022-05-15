@@ -40,7 +40,7 @@ public class GameBoard {
         Material material = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         material.getAdditionalRenderState().setWireframe(true);
         material.getAdditionalRenderState().setLineWidth(1);
-        material.setColor("Color", ColorRGBA.DarkGray);
+        material.setColor("Color", ColorRGBA.LightGray);
         wireframeBoxShape.setMaterial(material);
         this.wireframeBoxShape = wireframeBoxShape;
     }
