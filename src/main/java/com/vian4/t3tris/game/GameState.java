@@ -208,22 +208,68 @@ public class GameState extends BaseAppState {
     private final ActionListener actionListener = new ActionListener() {
         @Override
         public void onAction(String name, boolean keyPressed, float tpf) {
+            char region = 'D';
+            //Regions are:
+            //   A
+            // D   B
+            //   C
+            //seperated by y = x and y = -x
+            Vector3f dir = t3tris.getCamera().getDirection().normalize();
+            if (Math.abs(dir.getX()) <= dir.getZ()) {
+                region = 'A';
+            } else if (Math.abs(dir.getZ()) < dir.getX()) {
+                region = 'B';
+            } else if (-Math.abs(dir.getX()) >= dir.getZ()) {
+                region = 'C';
+            }
 
             if (name.equals("RotateX") && !keyPressed) {
                 if (board.currentPieceSelected()) {
-                    board.currentPiece().rotateX();
+                    if (region == 'C') {
+                        board.currentPiece().rotateClockwiseX();
+                    } else if (region == 'A') {
+                        board.currentPiece().rotateCounterclockwiseX();
+                    } else if (region == 'B') {
+                        board.currentPiece().rotateClockwiseZ();
+                    } else if (region == 'D') {
+                        board.currentPiece().rotateCounterclockwiseZ();
+                    }
                 }
             } else if (name.equals("RotateZ") && !keyPressed) {
                 if (board.currentPieceSelected()) {
-                    board.currentPiece().rotateZ();
+                    if (region == 'C') {
+                        board.currentPiece().rotateClockwiseZ();
+                    } else if (region == 'A') {
+                        board.currentPiece().rotateCounterclockwiseZ();
+                    } else if (region == 'B') {
+                        board.currentPiece().rotateCounterclockwiseX();
+                    } else if (region == 'D') {
+                        board.currentPiece().rotateClockwiseX();
+                    }
                 }
             } else if (name.equals("Right") && !keyPressed) {
                 if (board.currentPieceSelected()) {
-                    board.currentPiece().moveRight();
+                    if (region == 'C') {
+                        board.currentPiece().moveX(1);
+                    } else if (region == 'A') {
+                        board.currentPiece().moveX(-1);
+                    } else if (region == 'B') {
+                        board.currentPiece().moveZ(1);
+                    } else if (region == 'D') {
+                        board.currentPiece().moveZ(-1);
+                    }
                 }
             } else if (name.equals("Left") && !keyPressed) {
                 if (board.currentPieceSelected()) {
-                    board.currentPiece().moveLeft();
+                    if (region == 'C') {
+                        board.currentPiece().moveX(-1);
+                    } else if (region == 'A') {
+                        board.currentPiece().moveX(1);
+                    } else if (region == 'B') {
+                        board.currentPiece().moveZ(-1);
+                    } else if (region == 'D') {
+                        board.currentPiece().moveZ(1);
+                    }
                 }
             } else if (name.equals("Down") && !keyPressed) {
                 while (board.currentPieceSelected()) {
@@ -231,13 +277,28 @@ public class GameState extends BaseAppState {
                 }
             } else if (name.equals("Front") && !keyPressed) {
                 if (board.currentPieceSelected()) {
-                    board.currentPiece().moveForward();
+                    if (region == 'C') {
+                        board.currentPiece().moveZ(1);
+                    } else if (region == 'A') {
+                        board.currentPiece().moveZ(-1);
+                    } else if (region == 'B') {
+                        board.currentPiece().moveX(-1);
+                    } else if (region == 'D') {
+                        board.currentPiece().moveX(1);
+                    }
                 }
             } else if (name.equals("Back") && !keyPressed) {
                 if (board.currentPieceSelected()) {
-                    board.currentPiece().moveBack();
+                    if (region == 'C') {
+                        board.currentPiece().moveZ(-1);
+                    } else if (region == 'A') {
+                        board.currentPiece().moveZ(1);
+                    } else if (region == 'B') {
+                        board.currentPiece().moveX(1);
+                    } else if (region == 'D') {
+                        board.currentPiece().moveX(-1);
+                    }
                 }
-            }
         }
     };
 
