@@ -32,6 +32,9 @@ public class GameState extends BaseAppState {
 
     private GameBoard board;
 
+    private Node planeNode;
+    private Node center;
+
     private float timeWaited = 0.0f;
 
     @Override
@@ -56,25 +59,19 @@ public class GameState extends BaseAppState {
 
     @Override
     protected void cleanup(Application app) {
-        // TODO: clean up what you initialized in the initialize method,
-        // e.g. remove all spatials from rootNode
+        rootNode.detachChild(board.getBoxNode());
+        rootNode.detachChild(planeNode);
+        rootNode.detachChild(center);
     }
 
-    // onEnable()/onDisable() can be used for managing things that should
-    // only exist while the state is enabled. Prime examples would be scene
-    // graph attachment or input listener attachment.
     @Override
     protected void onEnable() {
-        // Called when the state is fully enabled, ie: is attached and
-        // isEnabled() is true or when the setEnabled() status changes after the
-        // state is attached.
+        inputManager.addListener(actionListener, "RotateX", "RotateZ", "Right", "Left", "Down", "Front", "Back");
     }
 
     @Override
     protected void onDisable() {
-        // Called when the state was previously enabled but is now disabled
-        // either because setEnabled(false) was called or the state is being
-        // cleaned up.
+        inputManager.removeListener(actionListener);
     }
 
     @Override
@@ -116,7 +113,7 @@ public class GameState extends BaseAppState {
     }
 
     private void initPlane() {
-        Node planeNode = new Node();
+        planeNode = new Node();
         int planePadding = 2;
         Geometry plane = new Geometry("Plane",
                 new Quad(2 * planePadding + board.xLen(), 2 * planePadding + board.zLen()));
@@ -130,8 +127,7 @@ public class GameState extends BaseAppState {
     }
 
     private void initCamera() {
-
-        Node center = new Node();
+        center = new Node();
         rootNode.attachChild(center);
         center.setLocalTranslation(board.xLen() / 2, 0, board.zLen() / 2);
 
@@ -171,7 +167,6 @@ public class GameState extends BaseAppState {
         inputManager.addMapping("Back",
                 new KeyTrigger(KeyInput.KEY_UP),
                 new KeyTrigger(KeyInput.KEY_W));
-        inputManager.addListener(actionListener, "RotateX", "RotateZ", "Right", "Left", "Down", "Front", "Back");
     }
 
     private void initLighting() {
