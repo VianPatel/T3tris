@@ -33,7 +33,6 @@ public abstract class GuiState extends BaseAppState {
 
     @Override
     protected void cleanup(Application app) {
-        onDisable();
         selfNode.detachAllChildren();
     }
 
