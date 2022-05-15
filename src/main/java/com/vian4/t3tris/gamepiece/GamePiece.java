@@ -215,5 +215,8 @@ public abstract class GamePiece {
         return new Point(point.getX(), center.getY() - zDif, center.getZ() + yDif);
     }
 
-    protected abstract Point getCenter();
+    protected Point getCenter() {
+        return points[selectedPointIndex];
+    }
+    
 }

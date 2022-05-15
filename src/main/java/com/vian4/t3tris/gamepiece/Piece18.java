@@ -21,8 +21,4 @@ public class Piece18 extends GamePiece {
         return points;
     }
 
-    @Override
-    protected Point getCenter() {
-        return points[selectedPointIndex];
-    }
 }
