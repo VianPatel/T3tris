@@ -28,7 +28,8 @@ public class WireframeGamePiece {
         board.getBoxNode().attachChild(wireframeNode);
     }
 
-    protected void delete() {
+    @Override
+    protected void finalize() {
         board.getBoxNode().detachChild(wireframeNode);
     }
 

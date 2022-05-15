@@ -35,10 +35,12 @@ public abstract class GamePiece {
         this.selectedPointIndex = selectedPointIndex;
     }
 
-    private void delete() {
+    @Override
+    protected void finalize() {
+        gamePieceNode.detachAllChildren();
         gameBoard.getBoxNode().detachChild(gamePieceNode);
     }
-
+    
     private void updateNodeTranslation() {
         for (int i = 0; i < points.length; i++) {
             shapes[i].setLocalTranslation(points[i].getX(), points[i].getY(), points[i].getZ());
@@ -72,9 +74,6 @@ public abstract class GamePiece {
                 if (points[i].getY() > maxY) {
                     maxY = points[i].getY();
                 }
-                gamePieceNode.detachAllChildren();
-                wireframeGamePiece.delete();
-                this.delete();
                 gameBoard.setSlot(points[i].getY(), points[i].getX(), points[i].getZ(), shapes[i]);
             }
             gameBoard.setCurrentPiece(null);
