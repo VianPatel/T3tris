@@ -193,8 +193,7 @@ public class GameState extends BaseAppState {
                                                                                                  // camera loc
         rootNode.addLight(spot);
 
-        final int SHADOWMAP_SIZE = 1024;
-        SpotLightShadowRenderer slsr = new SpotLightShadowRenderer(assetManager, SHADOWMAP_SIZE);
+        SpotLightShadowRenderer slsr = new SpotLightShadowRenderer(assetManager, 1024);
         slsr.setLight(spot);
         t3tris.getViewPort().addProcessor(slsr);
 
