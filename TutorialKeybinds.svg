@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1920"
+   height="1400"
+   viewBox="0 0 507.99999 370.41666"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="TutorialKeybinds.svg"
+   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
+   inkscape:export-filename="TutorialKeybinds.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.46057099"
+     inkscape:cx="442.92846"
+     inkscape:cy="670.90635"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <rect
+       x="640.50928"
+       y="210.60814"
+       width="1215.882"
+       height="151.98526"
+       id="rect1038" />
+    <rect
+       x="573.20154"
+       y="84.677498"
+       width="825.06281"
+       height="119.41699"
+       id="rect926" />
+    <rect
+       x="104.21846"
+       y="156.32768"
+       width="269.23102"
+       height="275.74469"
+       id="rect127" />
+    <rect
+       x="104.21846"
+       y="156.32768"
+       width="128.10185"
+       height="138.95795"
+       id="rect127-9" />
+    <rect
+       x="104.21846"
+       y="156.32768"
+       width="269.23102"
+       height="275.74469"
+       id="rect127-4" />
+    <rect
+       x="104.21846"
+       y="156.32768"
+       width="269.23102"
+       height="275.74469"
+       id="rect127-91" />
+    <rect
+       x="104.21846"
+       y="156.32768"
+       width="269.23102"
+       height="275.74469"
+       id="rect127-91-5" />
+    <rect
+       x="104.21846"
+       y="156.32768"
+       width="269.23102"
+       height="275.74469"
+       id="rect127-91-5-6" />
+    <rect
+       x="104.21846"
+       y="156.32768"
+       width="269.23102"
+       height="275.74469"
+       id="rect127-91-5-6-9" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#808080;stroke-width:0.264583"
+       id="rect63"
+       width="40"
+       height="40"
+       x="20.136927"
+       y="48.829784" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-0.54688027,11.864554)"
+       id="text125"
+       style="font-size:106.667px;white-space:pre;shape-inside:url(#rect127);display:inline;fill:#000000"><tspan
+         x="104.21875"
+         y="253.38178"
+         id="tspan1339"><tspan
+           style="fill:#ffffff"
+           id="tspan1337">W</tspan></tspan></text>
+    <rect
+       style="fill:#808080;stroke-width:0.264583"
+       id="rect63-1"
+       width="40"
+       height="40"
+       x="75.346939"
+       y="48.452305" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,60.864097,33.516137)"
+       id="text125-5"
+       style="font-size:106.667px;white-space:pre;shape-inside:url(#rect127-9);display:inline;fill:#000000" />
+    <text
+       xml:space="preserve"
+       style="font-size:28.2223px;fill:#ffffff;stroke-width:0.264583"
+       x="83.537117"
+       y="78.787621"
+       id="text607"><tspan
+         sodipodi:role="line"
+         id="tspan605"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="83.537117"
+         y="78.787621">↑</tspan></text>
+    <rect
+       style="fill:#808080;stroke-width:0.264583"
+       id="rect63-9"
+       width="40"
+       height="40"
+       x="20.136927"
+       y="93.927109" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,3.5594658,57.004212)"
+       id="text125-7"
+       style="font-size:106.667px;white-space:pre;shape-inside:url(#rect127-4);display:inline;fill:#000000"><tspan
+         x="104.21875"
+         y="253.38178"
+         id="tspan1343"><tspan
+           style="fill:#ffffff"
+           id="tspan1341">A</tspan></tspan></text>
+    <rect
+       style="fill:#808080;stroke-width:0.264583"
+       id="rect63-1-4"
+       width="40"
+       height="40"
+       x="75.346939"
+       y="93.549629" />
+    <text
+       xml:space="preserve"
+       style="font-size:28.2223px;fill:#ffffff;stroke-width:0.264583"
+       x="83.640472"
+       y="122.39666"
+       id="text607-3"><tspan
+         sodipodi:role="line"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="83.640472"
+         y="122.39666"
+         id="tspan918">←</tspan></text>
+    <rect
+       style="fill:#808080;stroke-width:0.264583"
+       id="rect63-4"
+       width="40"
+       height="40"
+       x="20.136927"
+       y="139.02443" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,4.758914,102.0592)"
+       id="text125-2"
+       style="font-size:106.667px;white-space:pre;shape-inside:url(#rect127-91);display:inline;fill:#ffffff"><tspan
+         x="104.21875"
+         y="253.38178"
+         id="tspan1345">S</tspan></text>
+    <rect
+       style="fill:#808080;stroke-width:0.264583"
+       id="rect63-1-7"
+       width="40"
+       height="40"
+       x="75.346939"
+       y="138.64696" />
+    <text
+       xml:space="preserve"
+       style="font-size:28.2223px;fill:#ffffff;stroke-width:0.264583"
+       x="83.406204"
+       y="167.49399"
+       id="text607-8"><tspan
+         sodipodi:role="line"
+         id="tspan605-9"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="83.406204"
+         y="167.49399">→</tspan></text>
+    <rect
+       style="fill:#808080;stroke-width:0.264583"
+       id="rect63-4-5"
+       width="40"
+       height="40"
+       x="20.136927"
+       y="184.12177" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,1.753238,147.15653)"
+       id="text125-2-8"
+       style="font-size:106.667px;white-space:pre;shape-inside:url(#rect127-91-5);display:inline;fill:#ffffff"><tspan
+         x="104.21875"
+         y="253.38178"
+         id="tspan1347">D
+</tspan></text>
+    <rect
+       style="fill:#808080;stroke-width:0.264583"
+       id="rect63-1-7-8"
+       width="40"
+       height="40"
+       x="75.346939"
+       y="183.74428" />
+    <text
+       xml:space="preserve"
+       style="font-size:28.2223px;fill:#ffffff;stroke-width:0.264583"
+       x="83.537117"
+       y="213.98312"
+       id="text607-8-0"><tspan
+         sodipodi:role="line"
+         id="tspan605-9-5"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="83.537117"
+         y="213.98312">↓	</tspan></text>
+    <rect
+       style="fill:#808080;stroke-width:0.264583"
+       id="rect63-4-5-3"
+       width="40"
+       height="40"
+       x="20.136927"
+       y="229.21909" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,1.5415707,190.01018)"
+       id="text125-2-8-4"
+       style="font-size:106.667px;white-space:pre;shape-inside:url(#rect127-91-5-6);display:inline;fill:#ffffff"><tspan
+         x="104.21875"
+         y="253.38178"
+         id="tspan1349">Q</tspan></text>
+    <rect
+       style="fill:#808080;stroke-width:0.264583"
+       id="rect63-1-7-8-0"
+       width="40"
+       height="40"
+       x="75.346939"
+       y="228.84161" />
+    <text
+       xml:space="preserve"
+       style="font-size:28.2223px;fill:#ffffff;stroke-width:0.264583"
+       x="103.05451"
+       y="262.41534"
+       id="text607-8-0-7"><tspan
+         sodipodi:role="line"
+         id="tspan605-9-5-3"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="103.05451"
+         y="262.41534">.</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="103.05451"
+         y="297.69321"
+         id="tspan922" /></text>
+    <rect
+       style="fill:#808080;stroke-width:0.264583"
+       id="rect63-4-5-3-6"
+       width="40"
+       height="40"
+       x="20.136927"
+       y="274.31641" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,4.1944678,237.35118)"
+       id="text125-2-8-4-2"
+       style="font-size:106.667px;white-space:pre;shape-inside:url(#rect127-91-5-6-9);display:inline;fill:#ffffff"><tspan
+         x="104.21875"
+         y="253.38178"
+         id="tspan1351">E</tspan></text>
+    <rect
+       style="fill:#808080;stroke-width:0.264583"
+       id="rect63-1-7-8-0-2"
+       width="40"
+       height="40"
+       x="75.346939"
+       y="273.93893" />
+    <rect
+       style="fill:#808080;stroke-width:0.264583"
+       id="rect63-1-7-8-0-2-1"
+       width="40"
+       height="40"
+       x="20.136927"
+       y="319.26175" />
+    <text
+       xml:space="preserve"
+       style="font-size:28.2223px;fill:#ffffff;stroke-width:0.264583"
+       x="90.097588"
+       y="304.01428"
+       id="text607-8-0-7-2"><tspan
+         sodipodi:role="line"
+         id="tspan605-9-5-3-6"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="90.097588"
+         y="304.01428">/</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,0,35.042553)"
+       id="text924"
+       style="font-size:106.667px;white-space:pre;shape-inside:url(#rect926);display:inline;fill:#999999" />
+    <text
+       xml:space="preserve"
+       style="font-size:28.2223px;fill:#999999;stroke-width:0.264583"
+       x="151.65958"
+       y="75.7901"
+       id="text984"><tspan
+         sodipodi:role="line"
+         id="tspan982"
+         style="stroke-width:0.264583"
+         x="151.65958"
+         y="75.7901">Move piece upwards</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-17.808631,129.68009)"
+       id="text1036"
+       style="font-size:106.667px;white-space:pre;shape-inside:url(#rect1038);display:inline;fill:#999999"><tspan
+         x="640.50977"
+         y="307.66108"
+         id="tspan1353">Move piece  downwards</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:28.2223px;fill:#999999;stroke-width:0.264583"
+       x="151.65958"
+       y="165.98476"
+       id="text1044"><tspan
+         sodipodi:role="line"
+         id="tspan1042"
+         style="stroke-width:0.264583"
+         x="151.65958"
+         y="165.98476">Move piece right</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:28.2223px;fill:#999999;stroke-width:0.264583"
+       x="151.65958"
+       y="120.95798"
+       id="text1048"><tspan
+         sodipodi:role="line"
+         id="tspan1046"
+         style="stroke-width:0.264583"
+         x="151.65958"
+         y="120.95798">Move piece left</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:28.2223px;fill:#999999;stroke-width:0.264583"
+       x="151.65958"
+       y="304.52231"
+       id="text1056"><tspan
+         sodipodi:role="line"
+         id="tspan1054"
+         style="stroke-width:0.264583"
+         x="151.65958"
+         y="304.52231">Rotate clockwise</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:28.2223px;fill:#999999;stroke-width:0.264583"
+       x="151.65958"
+       y="346.66827"
+       id="text1056-1"><tspan
+         sodipodi:role="line"
+         id="tspan1054-1"
+         style="stroke-width:0.264583"
+         x="151.65958"
+         y="346.66827">Drop piece</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:28.2223px;fill:#999999;stroke-width:0.264583"
+       x="151.65958"
+       y="256.17941"
+       id="text1060"><tspan
+         sodipodi:role="line"
+         id="tspan1058"
+         style="stroke-width:0.264583"
+         x="151.65958"
+         y="256.17941">Rotate towards viewport</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:28.2223px;fill:#999999;stroke-width:0.264583"
+       x="193.18098"
+       y="35.042553"
+       id="text1064"><tspan
+         sodipodi:role="line"
+         id="tspan1062"
+         style="stroke-width:0.264583"
+         x="193.18098"
+         y="35.042553">Keybinds</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:28.2223px;fill:#000000;stroke-width:0.264583"
+       x="31.448372"
+       y="333.97696"
+       id="text835"><tspan
+         sodipodi:role="line"
+         id="tspan833"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="31.448372"
+         y="333.97696">⎵</tspan></text>
+  </g>
+</svg>

@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 import com.jme3.app.SimpleApplication;
 import com.jme3.system.AppSettings;
 import com.simsilica.lemur.GuiGlobals;
-import com.vian4.t3tris.gui.Tutorial;
+import com.vian4.t3tris.gui.Title;
 
 public class T3tris extends SimpleApplication {
 
@@ -50,7 +50,7 @@ public class T3tris extends SimpleApplication {
         GuiGlobals.initialize(this);
         flyCam.setEnabled(false);
 
-        stateManager.attach(new Tutorial());
+        stateManager.attach(new Title());
     }
 
 }
