@@ -308,11 +308,11 @@ public class GameState extends BaseAppState {
         int rand = (int) (Math.random() * 29) + 1;
         GamePiece piece = null;
         try {
-            piece = (GamePiece) Class.forName("com.vian4.t3tris.gamepiece.Piece" + rand).getConstructor(GameBoard.class, ColorRGBA.class, Integer.TYPE, Integer.TYPE, Integer.TYPE).newInstance(board, getRandomColor(), 2, 23, 0);
+            piece = (GamePiece) Class.forName("com.vian4.t3tris.gamepiece.Piece" + rand).getConstructor(GameBoard.class, ColorRGBA.class, Integer.TYPE, Integer.TYPE, Integer.TYPE).newInstance(board, getRandomColor(), 4, 23, 4);
         } catch (ClassNotFoundException | ClassCastException | NoSuchMethodException | InstantiationException | IllegalArgumentException | IllegalAccessException | InvocationTargetException e) {
             System.out.println("Error creating class com.vian4.t3tris.gamepiece.Piece" + rand);
             e.printStackTrace();
-            piece = new Piece1(board, getRandomColor(), 2, 23, 0);
+            piece = new Piece1(board, getRandomColor(), 4, 23, 4);
         }
         return piece;
     }
