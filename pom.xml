@@ -13,32 +13,6 @@
         <jme3_v>3.3.2-stable</jme3_v>
     </properties>
 
-    <repositories>
-
-    <!--
-        <repository>
-            <id>jcenterJMonkey</id>
-            <url>https://dl.bintray.com/jmonkeyengine/org.jmonkeyengine</url>
-        </repository>
-        <repository>
-            <id>jcenter</id>
-            <url>https://jcenter.bintray.com/</url>
-        </repository>
-        <repository>
-            <id>jcenterBlocks</id>
-            <url>https://dl.bintray.com/remyvd/rvandoosselaer</url>
-        </repository>
-        <repository>
-            <id>jcenterMathAndLemur</id>
-            <url>https://dl.bintray.com/simsilica/Sim-tools/</url>
-        </repository>
-        <repository>
-            <id>jcenterMinie</id>
-            <url>https://dl.bintray.com/stephengold/com.github.stephengold/</url>
-        </repository>
-    -->
-    </repositories>
-
     <dependencies>
             <dependency>
             <groupId>${jme3_g}</groupId>
@@ -66,97 +40,7 @@
             <artifactId>lemur</artifactId>
             <version>1.16.0</version>
         </dependency>
-        <!--<dependency>
-            <groupId>com.simsilica</groupId>
-            <artifactId>lemur-proto</artifactId>
-            <version>1.13.0</version>
-        </dependency>-->
-    <!--
-        <dependency>
-            <groupId>${jme3_g}</groupId>
-            <artifactId>jme3-core</artifactId>
-            <version>${jme3_v}</version>
-        </dependency>
-        <dependency>
-            <groupId>${jme3_g}</groupId>
-            <artifactId>jme3-desktop</artifactId>
-            <version>${jme3_v}</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>${jme3_g}</groupId>
-            <artifactId>jme3-effects</artifactId>
-            <version>${jme3_v}</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>${jme3_g}</groupId>
-            <artifactId>jme3-lwjgl</artifactId>
-            <version>${jme3_v}</version>
-        </dependency>
-        <dependency>
-            <groupId>${jme3_g}</groupId>
-            <artifactId>jme3-testdata</artifactId>
-            <version>${jme3_v}</version>
-            <scope>runtime</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.rvandoosselaer</groupId>
-            <artifactId>blocks</artifactId>
-            <version>1.6.4</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.simsilica</groupId>
-            <artifactId>sim-math</artifactId>
-            <version>1.4.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.stephengold</groupId>
-            <artifactId>Minie</artifactId>
-            <version>3.1.0-test2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.simsilica</groupId>
-            <artifactId>lemur</artifactId>
-            <version>1.14.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.jayfella</groupId>
-            <artifactId>jme-fastnoise</artifactId>
-            <version>1.0.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.luben</groupId>
-            <artifactId>zstd-jni</artifactId>
-            <version>1.4.5-12</version>
-        </dependency>
-
-    -->
-        <!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all -->
-    <!--
-        <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
-            <version>3.0.6</version>
-            <type>pom</type>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-antrun-plugin</artifactId>
-            <version>3.0.0</version>
-        </dependency>
-
-    -->
     </dependencies>
-
-
 
 
     <build>
@@ -168,10 +52,6 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
-                    <excludes>
-                        <exclude>**/blocks/*.java</exclude>
-                        <exclude>**/blocks/api/*/*.java</exclude>
-                    </excludes>
                 </configuration>
             </plugin>
             <plugin>
