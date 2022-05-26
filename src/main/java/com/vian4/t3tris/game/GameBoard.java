@@ -103,9 +103,22 @@ public class GameBoard {
     }
 
     public void clearYPlain(int y) {
-        for (y = y + 1; y < board.length; y ++) {
+        for (int clearY = y; clearY < board.length; clearY++) {
             for (int x = 0; x < board[y].length; x++) {
                 for (int z = 0; z < board[y][x].length; z++) {
+                    if (board[y][x][z] != null) {
+                        boxNode.detachChild(board[y][x][z]);
+                    }
+                }
+            }
+        }
+
+        for (y = y + 1; y < board.length; y++) {
+            for (int x = 0; x < board[y].length; x++) {
+                for (int z = 0; z < board[y][x].length; z++) {
+                    if (board[y][x][z] != null) {
+                        board[y][x][z].move(0, -1, 0);
+                    }
                     board[y-1][x][z] = board[y][x][z];
                 }
             }
@@ -121,7 +134,10 @@ public class GameBoard {
     public void clearXPlain(int x) {
         for (int y = 0; y < board.length; y++) {
             for (int z = 0; z < board[y][x].length; z++) {
-                board[y][x][z] = null;
+                if (board[y][x][z] != null) {
+                    boxNode.detachChild(board[y][x][z]);
+                    board[y][x][z] = null;
+                }
             }
         }
     }
@@ -129,7 +145,10 @@ public class GameBoard {
     public void clearZPlain(int z) {
         for (int y = 0; y < board.length; y++) {
             for (int x = 0; x < board[y].length; x++) {
-                board[y][x][z] = null;
+                if (board[y][x][z] != null) {
+                    boxNode.detachChild(board[y][x][z]);
+                    board[y][x][z] = null;
+                }
             }
         }
     }
