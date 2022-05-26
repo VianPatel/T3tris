@@ -64,8 +64,19 @@ public class Tutorial extends GuiState {
                 mouseControls.setPosition((t3tris.getWidth() - width) / 2, (t3tris.getHeight() - height) / 2);
                 selfNode.attachChild(mouseControls);
                 break;
+            case 3:
+                Picture tutorialGameObjective = new Picture("TutorialGameObjective");
+                tutorialGameObjective.setImage(t3tris.getAssetManager(), "TutorialGameObjective.png", true);
+                scale = 0.9f;
+                height = minDimension * (0.729166f) * scale;
+                width = minDimension * scale;
+                tutorialGameObjective.setWidth(width);
+                tutorialGameObjective.setHeight(height);
+                tutorialGameObjective.setPosition((t3tris.getWidth() - width) / 2, (t3tris.getHeight() - height) / 2);
+                selfNode.attachChild(tutorialGameObjective);
+                break;
             default:
-                t3tris.getStateManager().detach(t3tris.getStateManager().getState(Tutorial.class));
+                t3tris.getStateManager().detach(t3tris.getStateManager().getState(getClass()));
                 t3tris.getStateManager().attach(new Title());
                 break;
         }
