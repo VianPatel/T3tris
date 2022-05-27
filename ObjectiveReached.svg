@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1920"
+   height="1400"
+   viewBox="0 0 507.99999 370.41666"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="ObjectiveReached.svg"
+   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
+   inkscape:export-filename="src\main\resources\ObjectiveReached.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.45427708"
+     inkscape:cx="992.78616"
+     inkscape:cy="574.53922"
+     inkscape:window-width="1350"
+     inkscape:window-height="697"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <rect
+       x="640.50928"
+       y="210.60814"
+       width="1215.882"
+       height="151.98526"
+       id="rect1038" />
+    <rect
+       x="573.20154"
+       y="84.677498"
+       width="825.06281"
+       height="119.41699"
+       id="rect926" />
+    <rect
+       x="104.21846"
+       y="156.32768"
+       width="269.23102"
+       height="275.74469"
+       id="rect127" />
+    <rect
+       x="104.21846"
+       y="156.32768"
+       width="128.10185"
+       height="138.95795"
+       id="rect127-9" />
+    <rect
+       x="104.21846"
+       y="156.32768"
+       width="269.23102"
+       height="275.74469"
+       id="rect127-4" />
+    <rect
+       x="104.21846"
+       y="156.32768"
+       width="269.23102"
+       height="275.74469"
+       id="rect127-91" />
+    <rect
+       x="104.21846"
+       y="156.32768"
+       width="269.23102"
+       height="275.74469"
+       id="rect127-91-5" />
+    <rect
+       x="104.21846"
+       y="156.32768"
+       width="269.23102"
+       height="275.74469"
+       id="rect127-91-5-6" />
+    <rect
+       x="104.21846"
+       y="156.32768"
+       width="269.23102"
+       height="275.74469"
+       id="rect127-91-5-6-9" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,60.864097,33.516137)"
+       id="text125-5"
+       style="font-size:106.667px;white-space:pre;shape-inside:url(#rect127-9);display:inline;fill:#000000" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,0,35.042553)"
+       id="text924"
+       style="font-size:106.667px;white-space:pre;shape-inside:url(#rect926);display:inline;fill:#999999" />
+    <text
+       xml:space="preserve"
+       style="font-size:28.2223px;white-space:pre;inline-size:410.743;display:inline;fill:#999999;stroke-width:0.264583"
+       x="350.90891"
+       y="75.7901"
+       id="text984"
+       transform="translate(-219.68924,116.75603)"><tspan
+         x="350.90891"
+         y="75.7901"
+         id="tspan322">Objective reached!</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:28.2223px;fill:#999999;stroke-width:0.264583"
+       x="191.92509"
+       y="37.914894"
+       id="text1064"><tspan
+         sodipodi:role="line"
+         id="tspan1062"
+         style="stroke-width:0.264583"
+         x="191.92509"
+         y="37.914894" /></text>
+  </g>
+</svg>

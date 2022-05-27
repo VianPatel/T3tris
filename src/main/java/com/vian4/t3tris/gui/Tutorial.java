@@ -76,7 +76,7 @@ public class Tutorial extends GuiState {
                 selfNode.attachChild(tutorialGameObjective);
                 break;
             default:
-                t3tris.getStateManager().detach(t3tris.getStateManager().getState(getClass()));
+                t3tris.getStateManager().detach(this);
                 t3tris.getStateManager().attach(new Title());
                 break;
         }

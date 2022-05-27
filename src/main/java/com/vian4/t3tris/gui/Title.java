@@ -32,7 +32,7 @@ public class Title extends GuiState {
         startButton.addClickCommands(new Command<Button>() {
             @Override
             public void execute(Button source) {
-                t3tris.getStateManager().detach(t3tris.getStateManager().getState(Title.class));
+                t3tris.getStateManager().detach(Title.this);
                 t3tris.getStateManager().attach(new GameState());
             }
         });
@@ -42,7 +42,7 @@ public class Title extends GuiState {
         tutorialButton.addClickCommands(new Command<Button>() {
             @Override
             public void execute(Button source) {
-                t3tris.getStateManager().detach(t3tris.getStateManager().getState(Title.class));
+                t3tris.getStateManager().detach(Title.this);
                 t3tris.getStateManager().attach(new Tutorial());
             }
         });
