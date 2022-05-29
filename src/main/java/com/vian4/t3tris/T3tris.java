@@ -6,11 +6,15 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import com.jme3.app.SimpleApplication;
+import com.jme3.audio.AudioNode;
+import com.jme3.audio.AudioData.DataType;
 import com.jme3.system.AppSettings;
 import com.simsilica.lemur.GuiGlobals;
 import com.vian4.t3tris.gui.Title;
 
 public class T3tris extends SimpleApplication {
+
+    private AudioNode themeMusic;
 
     public static void main(String[] args) {
         T3tris app = new T3tris();
@@ -47,6 +51,11 @@ public class T3tris extends SimpleApplication {
 
     @Override
     public void simpleInitApp() {
+        themeMusic = new AudioNode(assetManager, "AssetsNotCreatedByMe/Tetris.wav", DataType.Buffer);
+        rootNode.attachChild(themeMusic);
+        themeMusic.setLooping(true);
+        themeMusic.play();
+
         GuiGlobals.initialize(this);
         flyCam.setEnabled(false);
 
