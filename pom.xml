@@ -6,7 +6,7 @@
 
     <groupId>com.vian4.t3tris</groupId>
     <artifactId>T3tris</artifactId>
-    <version>1.2</version>
+    <version>1.3</version>
 
     <properties>
         <jme3_g>org.jmonkeyengine</jme3_g>
