@@ -19,18 +19,14 @@ public class T3tris extends SimpleApplication {
         T3tris app = new T3tris();
         AppSettings settings = new AppSettings(true);
         settings.setTitle("T3tris");
-        int width;
-        int height;
-        try {
-            java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-            width = (int) screenSize.getWidth();
-            height = (int) screenSize.getHeight();
-        } catch (Exception ignored) {
-            width = 1280;
-            height = 768;
-        }
-        settings.put("Width", width);
-        settings.put("Height", height);
+
+        GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        DisplayMode[] modes = device.getDisplayModes();
+        settings.setResolution(modes[0].getWidth(),modes[i].getHeight());
+        settings.setFrequency(modes[i].getRefreshRate());
+        settings.setBitsPerPixel(modes[i].getBitDepth());
+        settings.setFullscreen(device.isFullScreenSupported());
+        
         settings.setVSync(true);
         settings.setGammaCorrection(true);
         settings.setSettingsDialogImage("/T3trisLogo256.png");
