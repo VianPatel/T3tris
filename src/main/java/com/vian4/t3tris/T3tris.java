@@ -3,6 +3,9 @@ package com.vian4.t3tris;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+import java.awt.GraphicsDevice;
+import java.awt.DisplayMode;
+import java.awt.GraphicsEnvironment;
 import javax.imageio.ImageIO;
 import com.jme3.app.SimpleApplication;
 import com.jme3.audio.AudioNode;
@@ -22,9 +25,9 @@ public class T3tris extends SimpleApplication {
 
         GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         DisplayMode[] modes = device.getDisplayModes();
-        settings.setResolution(modes[0].getWidth(),modes[i].getHeight());
-        settings.setFrequency(modes[i].getRefreshRate());
-        settings.setBitsPerPixel(modes[i].getBitDepth());
+        settings.setResolution(modes[0].getWidth(), modes[0].getHeight());
+        settings.setFrequency(modes[0].getRefreshRate());
+        settings.setBitsPerPixel(modes[0].getBitDepth());
         settings.setFullscreen(device.isFullScreenSupported());
         
         settings.setVSync(true);
@@ -37,7 +40,7 @@ public class T3tris extends SimpleApplication {
                     ImageIO.read(T3tris.class.getResourceAsStream("/T3trisIcon32.png")),
                     ImageIO.read(T3tris.class.getResourceAsStream("/T3trisIcon16.png"))});
         } catch (IOException ignored) {}
-        app.setShowSettings(true);
+        app.setShowSettings(false);
         app.setDisplayStatView(false);
         app.setDisplayFps(false);
         app.setPauseOnLostFocus(true);
