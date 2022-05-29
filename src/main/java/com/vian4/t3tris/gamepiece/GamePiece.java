@@ -100,7 +100,6 @@ public abstract class GamePiece {
         return shapes;
     }
 
-    //todo: fix issue with validation
     private boolean validate(Point[] points) {
         for (Point validatePoint : points) {
             if (validatePoint.getY() >= gameBoard.yLen() ||
