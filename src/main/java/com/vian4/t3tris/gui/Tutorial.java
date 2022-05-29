@@ -26,7 +26,7 @@ public class Tutorial extends GuiState {
     private void setupBasicFunction() {
         Container startContainer = new Container();
         selfNode.attachChild(startContainer);
-        startContainer.setLocalTranslation(0.9f * t3tris.getWidth(), 0.1f * t3tris.getHeight(), 0.0f);
+        startContainer.setLocalTranslation(0.9f * t3tris.getWidth(), 0.22f * t3tris.getHeight(), 0.0f);
 
         Button startButton = startContainer.addChild(new Button("Next"));
         startButton.setTextHAlignment(HAlignment.Center);
