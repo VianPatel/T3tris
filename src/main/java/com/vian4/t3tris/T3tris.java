@@ -53,6 +53,7 @@ public class T3tris extends SimpleApplication {
     public void simpleInitApp() {
         themeMusic = new AudioNode(assetManager, "AssetsNotCreatedByMe/Tetris.wav", DataType.Buffer);
         rootNode.attachChild(themeMusic);
+        themeMusic.setPositional(false);
         themeMusic.setLooping(true);
         themeMusic.play();
 
