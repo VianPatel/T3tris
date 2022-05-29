@@ -100,7 +100,6 @@ public abstract class GamePiece {
         return shapes;
     }
 
-    //todo: fix issue with validation
     private boolean validate(Point[] points) {
         for (Point validatePoint : points) {
             if (validatePoint.getY() >= gameBoard.yLen() ||
@@ -208,7 +207,8 @@ public abstract class GamePiece {
 
     private Point rotateClockwiseZ(Point point) {
         Point center = getCenter();
-        if (center == null) return null;
+        if (center == null)
+            return null;
         int zDif = point.getZ() - center.getZ();
         int yDif = point.getY() - center.getY();
         return new Point(point.getX(), center.getY() - zDif, center.getZ() + yDif);

@@ -18,12 +18,6 @@ public class Title extends GuiState {
         pic.setPosition(t3tris.getWidth() / 4, t3tris.getHeight() / 4);
         selfNode.attachChild(pic);
 
-        //Container welcomeContainer = new Container();
-        //selfNode.attachChild(welcomeContainer);
-        //welcomeContainer.setLocalTranslation(t3tris.getWidth() / 2, t3tris.getHeight() * 4 / 5, 0);
-        //welcomeContainer.addChild(new Label("Welcome to"));
-
-
         Container optionContainer = new Container();
         selfNode.attachChild(optionContainer);
         optionContainer.setLocalTranslation(t3tris.getWidth() / 2, t3tris.getHeight() / 4, 0);
