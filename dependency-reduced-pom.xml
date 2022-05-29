@@ -12,10 +12,6 @@
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
-          <excludes>
-            <exclude>**/blocks/*.java</exclude>
-            <exclude>**/blocks/api/*/*.java</exclude>
-          </excludes>
         </configuration>
       </plugin>
       <plugin>
@@ -41,7 +37,7 @@
               </filters>
               <transformers>
                 <transformer>
-                  <mainClass>com.vian4.t3tris.Main</mainClass>
+                  <mainClass>com.vian4.t3tris.T3tris</mainClass>
                 </transformer>
               </transformers>
             </configuration>

@@ -1,6 +1,5 @@
 package com.vian4.t3tris;
 
-import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
