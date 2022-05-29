@@ -47,10 +47,10 @@ public class GameState extends BaseAppState {
 
     private ChaseCamera chaseCam;
 
-    private FilterPostProcessor fpp = null;
-    private SpotLightShadowRenderer spotLightShadow = null;
-    private AmbientLight ambientLighting = null;
-    private SpotLight spotLight = null;
+    private FilterPostProcessor fpp;
+    private SpotLightShadowRenderer spotLightShadow;
+    private AmbientLight ambientLighting;
+    private SpotLight spotLight;
 
     private float timeWaited = 0.0f;
 
@@ -141,8 +141,7 @@ public class GameState extends BaseAppState {
     private void initPlane() {
         planeNode = new Node();
         int planePadding = 2;
-        Geometry plane = new Geometry("Plane",
-                new Quad(2 * planePadding + board.xLen(), 2 * planePadding + board.zLen()));
+        Geometry plane = new Geometry("Plane", new Quad(2 * planePadding + board.xLen(), 2 * planePadding + board.zLen()));
         plane.rotate(-90 * FastMath.DEG_TO_RAD, -90 * FastMath.DEG_TO_RAD, 0);
         plane.setMaterial(board.getColor(ColorRGBA.LightGray));
         planeNode.attachChild(plane);
@@ -161,8 +160,7 @@ public class GameState extends BaseAppState {
         chaseCam.setSmoothMotion(true);
         chaseCam.setLookAtOffset(Vector3f.UNIT_Y.mult(board.yLen() / 4));
 
-        float minDistance = (float) Math
-                .sqrt(board.xLen() * board.xLen() + board.yLen() * board.yLen() + board.zLen() * board.zLen());
+        float minDistance = (float) Math.sqrt(board.xLen() * board.xLen() + board.yLen() * board.yLen() + board.zLen() * board.zLen());
         chaseCam.setMinDistance(minDistance * 1.1f);
         chaseCam.setDefaultDistance(minDistance * 1.5f);
         chaseCam.setMaxDistance(minDistance * 2.5f);
@@ -173,7 +171,6 @@ public class GameState extends BaseAppState {
 
     private void initKeybinds() {
         inputManager.addMapping("RotateX",
-                // new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
                 new KeyTrigger(KeyInput.KEY_E),
                 new KeyTrigger(KeyInput.KEY_SLASH));
         inputManager.addMapping("RotateZ",
