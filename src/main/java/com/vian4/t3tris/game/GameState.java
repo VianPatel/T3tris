@@ -30,6 +30,8 @@ import com.jme3.shadow.SpotLightShadowRenderer;
 
 import com.vian4.t3tris.T3tris;
 import com.vian4.t3tris.gamepiece.*;
+import com.vian4.t3tris.gui.LoseState;
+import com.vian4.t3tris.gui.WinState;
 
 public class GameState extends BaseAppState {
 
@@ -43,6 +45,13 @@ public class GameState extends BaseAppState {
     private Node planeNode;
     private Node center;
 
+    private ChaseCamera chaseCam;
+
+    private FilterPostProcessor fpp = null;
+    private SpotLightShadowRenderer spotLightShadow = null;
+    private AmbientLight ambientLighting = null;
+    private SpotLight spotLight = null;
+
     private float timeWaited = 0.0f;
 
     @Override
@@ -52,7 +61,6 @@ public class GameState extends BaseAppState {
         this.rootNode = t3tris.getRootNode();
         this.assetManager = t3tris.getAssetManager();
         this.inputManager = t3tris.getInputManager();
-        //this.physics = this.stateManager.getState(BulletAppState.class);
 
         board = new GameBoard(t3tris.getAssetManager(), 20, 24, 10, 10);
         rootNode.attachChild(board.getBoxNode());
@@ -70,16 +78,27 @@ public class GameState extends BaseAppState {
         rootNode.detachChild(board.getBoxNode());
         rootNode.detachChild(planeNode);
         rootNode.detachChild(center);
+        t3tris.getViewPort().removeProcessor(fpp);
     }
 
     @Override
     protected void onEnable() {
         inputManager.addListener(actionListener, "RotateX", "RotateZ", "Right", "Left", "Down", "Front", "Back");
+        chaseCam.registerWithInput(inputManager);
+        t3tris.getViewPort().addProcessor(spotLightShadow);
+        t3tris.getViewPort().addProcessor(fpp);
+        rootNode.addLight(ambientLighting);
+        rootNode.addLight(spotLight);
     }
 
     @Override
     protected void onDisable() {
         inputManager.removeListener(actionListener);
+        chaseCam.cleanupWithInput(inputManager);
+        t3tris.getViewPort().removeProcessor(spotLightShadow);
+        t3tris.getViewPort().removeProcessor(fpp);
+        rootNode.removeLight(ambientLighting);
+        rootNode.removeLight(spotLight);
     }
 
     @Override
@@ -93,14 +112,14 @@ public class GameState extends BaseAppState {
             if (!board.currentPieceSelected()) {
                 board.setCurrentPiece(getRandomPiece());
             }
+
             if (board.currentPiece().moveDown()) {
-                System.out.println("Game Over!\nThanks for playing.");
-                //stop();
+                getStateManager().attach(new LoseState());
             }
 
-            // TODO plane clearing and or checking methods are not working
             for (int y = 0; y < board.yLen(); y++) {
                 if (board.isYPlainFilled(y)) {
+                    getStateManager().attach(new WinState());
                     board.clearYPlain(y);
                 }
             }
@@ -116,7 +135,6 @@ public class GameState extends BaseAppState {
                     board.clearZPlain(z);
                 }
             }
-            // board.currentPiece().rotate();
         }
     }
 
@@ -139,7 +157,7 @@ public class GameState extends BaseAppState {
         rootNode.attachChild(center);
         center.setLocalTranslation(board.xLen() / 2, 0, board.zLen() / 2);
 
-        ChaseCamera chaseCam = new ChaseCamera(t3tris.getCamera(), center, inputManager);
+        chaseCam = new ChaseCamera(t3tris.getCamera(), center, inputManager);
         chaseCam.setSmoothMotion(true);
         chaseCam.setLookAtOffset(Vector3f.UNIT_Y.mult(board.yLen() / 4));
 
@@ -178,29 +196,24 @@ public class GameState extends BaseAppState {
     }
 
     private void initLighting() {
-        AmbientLight al = new AmbientLight();
-        al.setColor(ColorRGBA.White.mult(0.4f));
-        rootNode.addLight(al);
+        ambientLighting = new AmbientLight();
+        ambientLighting.setColor(ColorRGBA.White.mult(0.4f));
 
-        SpotLight spot = new SpotLight();
-        spot.setSpotRange(1000f); // distance
-        spot.setSpotInnerAngle(15f * FastMath.DEG_TO_RAD); // inner light cone (central beam)
-        spot.setSpotOuterAngle(35f * FastMath.DEG_TO_RAD); // outer light cone (edge of the light)
-        spot.setColor(ColorRGBA.White.mult(1.6f)); // light color
-        // spot.setPosition(new Vector3f(0, 30, 2)); // shine from camera loc
-        spot.setPosition(new Vector3f(-50, 250, 0));
-        spot.setDirection((new Vector3f(0, 0, 0)).subtract(new Vector3f(0, 30, 2)).normalize()); // shine forward from
-                                                                                                 // camera loc
-        rootNode.addLight(spot);
+        spotLight = new SpotLight();
+        spotLight.setSpotRange(1000f);
+        spotLight.setSpotInnerAngle(15f * FastMath.DEG_TO_RAD);
+        spotLight.setSpotOuterAngle(35f * FastMath.DEG_TO_RAD);
+        spotLight.setColor(ColorRGBA.White.mult(1.6f));
 
-        SpotLightShadowRenderer slsr = new SpotLightShadowRenderer(assetManager, 1024);
-        slsr.setLight(spot);
-        t3tris.getViewPort().addProcessor(slsr);
+        spotLight.setPosition(new Vector3f(-50, 250, 0));
+        spotLight.setDirection((new Vector3f(0, 0, 0)).subtract(new Vector3f(0, 30, 2)).normalize());
 
-        FilterPostProcessor fpp = new FilterPostProcessor(assetManager);
+        spotLightShadow = new SpotLightShadowRenderer(assetManager, 1024);
+        spotLightShadow.setLight(spotLight);
+
+        fpp = new FilterPostProcessor(assetManager);
         SSAOFilter ssaoFilter = new SSAOFilter(15f, 40f, 0.4f, 0.6f);
         fpp.addFilter(ssaoFilter);
-        t3tris.getViewPort().addProcessor(fpp);
     }
 
 

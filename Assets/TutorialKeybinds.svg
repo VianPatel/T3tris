@@ -9,7 +9,7 @@
    id="svg5"
    sodipodi:docname="TutorialKeybinds.svg"
    inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
-   inkscape:export-filename="TutorialKeybinds.png"
+   inkscape:export-filename="..\src\main\resources\TutorialKeybinds.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -28,8 +28,8 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="0.46057099"
-     inkscape:cx="442.92846"
-     inkscape:cy="670.90635"
+     inkscape:cx="314.8266"
+     inkscape:cy="673.07756"
      inkscape:window-width="1920"
      inkscape:window-height="1009"
      inkscape:window-x="-8"
@@ -111,9 +111,9 @@
        style="font-size:106.667px;white-space:pre;shape-inside:url(#rect127);display:inline;fill:#000000"><tspan
          x="104.21875"
          y="253.38178"
-         id="tspan1339"><tspan
+         id="tspan501"><tspan
            style="fill:#ffffff"
-           id="tspan1337">W</tspan></tspan></text>
+           id="tspan499">W</tspan></tspan></text>
     <rect
        style="fill:#808080;stroke-width:0.264583"
        id="rect63-1"
@@ -151,9 +151,9 @@
        style="font-size:106.667px;white-space:pre;shape-inside:url(#rect127-4);display:inline;fill:#000000"><tspan
          x="104.21875"
          y="253.38178"
-         id="tspan1343"><tspan
+         id="tspan505"><tspan
            style="fill:#ffffff"
-           id="tspan1341">A</tspan></tspan></text>
+           id="tspan503">A</tspan></tspan></text>
     <rect
        style="fill:#808080;stroke-width:0.264583"
        id="rect63-1-4"
@@ -186,7 +186,7 @@
        style="font-size:106.667px;white-space:pre;shape-inside:url(#rect127-91);display:inline;fill:#ffffff"><tspan
          x="104.21875"
          y="253.38178"
-         id="tspan1345">S</tspan></text>
+         id="tspan507">S</tspan></text>
     <rect
        style="fill:#808080;stroke-width:0.264583"
        id="rect63-1-7"
@@ -219,7 +219,7 @@
        style="font-size:106.667px;white-space:pre;shape-inside:url(#rect127-91-5);display:inline;fill:#ffffff"><tspan
          x="104.21875"
          y="253.38178"
-         id="tspan1347">D
+         id="tspan509">D
 </tspan></text>
     <rect
        style="fill:#808080;stroke-width:0.264583"
@@ -253,7 +253,7 @@
        style="font-size:106.667px;white-space:pre;shape-inside:url(#rect127-91-5-6);display:inline;fill:#ffffff"><tspan
          x="104.21875"
          y="253.38178"
-         id="tspan1349">Q</tspan></text>
+         id="tspan511">Q</tspan></text>
     <rect
        style="fill:#808080;stroke-width:0.264583"
        id="rect63-1-7-8-0"
@@ -291,7 +291,7 @@
        style="font-size:106.667px;white-space:pre;shape-inside:url(#rect127-91-5-6-9);display:inline;fill:#ffffff"><tspan
          x="104.21875"
          y="253.38178"
-         id="tspan1351">E</tspan></text>
+         id="tspan513">E</tspan></text>
     <rect
        style="fill:#808080;stroke-width:0.264583"
        id="rect63-1-7-8-0-2"
@@ -332,7 +332,7 @@
          id="tspan982"
          style="stroke-width:0.264583"
          x="151.65958"
-         y="75.7901">Move piece upwards</tspan></text>
+         y="75.7901">Move piece back</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-17.808631,129.68009)"
@@ -340,7 +340,7 @@
        style="font-size:106.667px;white-space:pre;shape-inside:url(#rect1038);display:inline;fill:#999999"><tspan
          x="640.50977"
          y="307.66108"
-         id="tspan1353">Move piece  downwards</tspan></text>
+         id="tspan515">Move piece  forward</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:28.2223px;fill:#999999;stroke-width:0.264583"

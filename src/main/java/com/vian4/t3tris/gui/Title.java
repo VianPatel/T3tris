@@ -24,11 +24,11 @@ public class Title extends GuiState {
         //welcomeContainer.addChild(new Label("Welcome to"));
 
 
-        Container startContainer = new Container();
-        selfNode.attachChild(startContainer);
-        startContainer.setLocalTranslation(t3tris.getWidth() / 2, t3tris.getHeight() / 4, 0);
+        Container optionContainer = new Container();
+        selfNode.attachChild(optionContainer);
+        optionContainer.setLocalTranslation(t3tris.getWidth() / 2, t3tris.getHeight() / 4, 0);
 
-        Button startButton = startContainer.addChild(new Button("Start"));
+        Button startButton = optionContainer.addChild(new Button("Start"));
         startButton.addClickCommands(new Command<Button>() {
             @Override
             public void execute(Button source) {
@@ -38,7 +38,7 @@ public class Title extends GuiState {
         });
         startButton.setTextHAlignment(HAlignment.Center);
 
-        Button tutorialButton = startContainer.addChild(new Button("Tutorial"));
+        Button tutorialButton = optionContainer.addChild(new Button("Tutorial"));
         tutorialButton.addClickCommands(new Command<Button>() {
             @Override
             public void execute(Button source) {

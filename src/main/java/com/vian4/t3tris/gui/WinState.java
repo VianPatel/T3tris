@@ -31,19 +31,29 @@ public class WinState extends GuiState {
         objectiveReached.setPosition((t3tris.getWidth() - width) / 2, (t3tris.getHeight() - height) / 2);
         selfNode.attachChild(objectiveReached);
 
-        Container startContainer = new Container();
-        selfNode.attachChild(startContainer);
-        startContainer.setLocalTranslation(t3tris.getWidth() / 2, t3tris.getHeight() / 4, 0);
+        Container optionContainer = new Container();
+        selfNode.attachChild(optionContainer);
+        optionContainer.setLocalTranslation(t3tris.getWidth() / 2, t3tris.getHeight() / 4, 0);
 
-        Button resumeButton = startContainer.addChild(new Button("Continue Playing"));
+        Button resumeButton = optionContainer.addChild(new Button("Continue Playing"));
         resumeButton.addClickCommands(new Command<Button>() {
             @Override
             public void execute(Button source) {
-                t3tris.getStateManager().detach(t3tris.getStateManager().getState(Title.class));
+                t3tris.getStateManager().detach(WinState.this);
                 t3tris.getStateManager().getState(GameState.class).setEnabled(true);
             }
         });
         resumeButton.setTextHAlignment(HAlignment.Center);
+
+        Button quitButton = optionContainer.addChild(new Button("Quit"));
+        quitButton.addClickCommands(new Command<Button>() {
+            @Override
+            public void execute(Button source) {
+                t3tris.getStateManager().detach(WinState.this);
+                t3tris.stop();
+            }
+        });
+        quitButton.setTextHAlignment(HAlignment.Center);
 
     }
 
