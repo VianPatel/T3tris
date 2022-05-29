@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.vian4.t3tris</groupId>
   <artifactId>T3tris</artifactId>
-  <version>0.1-Alpha</version>
+  <version>1</version>
   <build>
     <plugins>
       <plugin>

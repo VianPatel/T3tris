@@ -25,16 +25,15 @@ public class T3tris extends SimpleApplication {
             java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
             width = (int) screenSize.getWidth();
             height = (int) screenSize.getHeight();
-            settings.setFullscreen(true);
         } catch (Exception ignored) {
             width = 1280;
             height = 768;
-            settings.setFullscreen(false);
         }
         settings.put("Width", width);
         settings.put("Height", height);
         settings.setVSync(true);
         settings.setGammaCorrection(true);
+        settings.setSettingsDialogImage("/T3trisLogo256.png");
         try {
             settings.setIcons(new BufferedImage[]{
                     ImageIO.read(T3tris.class.getResourceAsStream("/T3trisIcon256.png")),
@@ -42,7 +41,7 @@ public class T3tris extends SimpleApplication {
                     ImageIO.read(T3tris.class.getResourceAsStream("/T3trisIcon32.png")),
                     ImageIO.read(T3tris.class.getResourceAsStream("/T3trisIcon16.png"))});
         } catch (IOException ignored) {}
-        app.setShowSettings(false);
+        app.setShowSettings(true);
         app.setDisplayStatView(false);
         app.setDisplayFps(false);
         app.setPauseOnLostFocus(true);
