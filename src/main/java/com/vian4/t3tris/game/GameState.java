@@ -63,7 +63,6 @@ public class GameState extends BaseAppState {
         this.inputManager = t3tris.getInputManager();
 
         board = new GameBoard(t3tris.getAssetManager(), 20, 24, 10, 10);
-        rootNode.attachChild(board.getBoxNode());
         board.getBoxNode().setShadowMode(ShadowMode.CastAndReceive);
         
         
@@ -74,12 +73,7 @@ public class GameState extends BaseAppState {
     }
 
     @Override
-    protected void cleanup(Application app) {
-        rootNode.detachChild(board.getBoxNode());
-        rootNode.detachChild(planeNode);
-        rootNode.detachChild(center);
-        t3tris.getViewPort().removeProcessor(fpp);
-    }
+    protected void cleanup(Application app) {}
 
     @Override
     protected void onEnable() {
@@ -87,6 +81,9 @@ public class GameState extends BaseAppState {
         chaseCam.registerWithInput(inputManager);
         t3tris.getViewPort().addProcessor(spotLightShadow);
         t3tris.getViewPort().addProcessor(fpp);
+        rootNode.attachChild(board.getBoxNode());
+        rootNode.attachChild(planeNode);
+        rootNode.attachChild(center);
         rootNode.addLight(ambientLighting);
         rootNode.addLight(spotLight);
     }
@@ -97,6 +94,9 @@ public class GameState extends BaseAppState {
         chaseCam.cleanupWithInput(inputManager);
         t3tris.getViewPort().removeProcessor(spotLightShadow);
         t3tris.getViewPort().removeProcessor(fpp);
+        rootNode.detachChild(board.getBoxNode());
+        rootNode.detachChild(planeNode);
+        rootNode.detachChild(center);
         rootNode.removeLight(ambientLighting);
         rootNode.removeLight(spotLight);
     }
@@ -147,13 +147,11 @@ public class GameState extends BaseAppState {
         planeNode.attachChild(plane);
         planeNode.setLocalTranslation(-planePadding - 0.5f, 0.0f, -planePadding - 0.5f);
 
-        rootNode.attachChild(planeNode);
         planeNode.setShadowMode(ShadowMode.Receive);
     }
 
     private void initCamera() {
         center = new Node();
-        rootNode.attachChild(center);
         center.setLocalTranslation(board.xLen() / 2, 0, board.zLen() / 2);
 
         chaseCam = new ChaseCamera(t3tris.getCamera(), center, inputManager);
