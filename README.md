@@ -6,7 +6,7 @@
 **Usage:**
 
 Ensure that Java Runtime Environment 17 or newer is installed.
-Double click the jar file, or run in console with `java -jar pathTo3DTetris.jar`
+Double click the jar file, or run in console with `java -jar T3tris-1.4.jar`
 
 
 
