@@ -23,7 +23,7 @@ public class T3tris extends SimpleApplication {
         java.awt.DisplayMode displayMode = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode();
         settings.put("Width", displayMode.getWidth());
         settings.put("Height", displayMode.getHeight());
-        //settings.setFullscreen(true);
+        settings.setFullscreen(true);
         settings.setVSync(true);
         settings.setGammaCorrection(true);
         try {
