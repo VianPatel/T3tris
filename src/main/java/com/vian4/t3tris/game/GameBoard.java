@@ -35,8 +35,7 @@ public class GameBoard {
         pointBoxShape = (Geometry) assetManager.loadModel("Point.obj");
         blankBoxShape = (Geometry) assetManager.loadModel("Box.obj");
 
-        Geometry wireframeBoxShape = new Geometry("coordinate axis", blankBoxShape.getMesh());
-        //wireframeBoxShape.setLocalTranslation(x, y, z);
+        Geometry wireframeBoxShape = new Geometry("wireframebox", blankBoxShape.getMesh());
         Material material = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         material.getAdditionalRenderState().setWireframe(true);
         material.getAdditionalRenderState().setLineWidth(1);
