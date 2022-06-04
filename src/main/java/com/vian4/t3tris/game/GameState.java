@@ -326,7 +326,7 @@ public class GameState extends BaseAppState {
     }
 
     public ColorRGBA getRandomColor() {
-        List<ColorRGBA> disallowedColors = Arrays.asList(new ColorRGBA[]{ColorRGBA.White, ColorRGBA.LightGray, ColorRGBA.Gray, ColorRGBA.DarkGray, ColorRGBA.Black, ColorRGBA.BlackNoAlpha});
+        List<ColorRGBA> disallowedColors = Arrays.asList(new ColorRGBA[]{ColorRGBA.White, ColorRGBA.Pink, ColorRGBA.LightGray, ColorRGBA.Gray, ColorRGBA.DarkGray, ColorRGBA.Black, ColorRGBA.BlackNoAlpha});
 
         List<ColorRGBA> validColors = new ArrayList<>();
 
