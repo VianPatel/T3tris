@@ -1,0 +1,1 @@
+In tutorial show mini piece that can be rotated.
